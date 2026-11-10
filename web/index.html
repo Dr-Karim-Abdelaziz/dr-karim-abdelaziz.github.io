@@ -1281,13 +1281,12 @@ function render(){
    📄 المحتوى من ملفات جوجل (فولدر «محتوى تطبيق د. كريم»)
    التطبيق بيقرا الملفات كل ما يفتح، وبيحفظ آخر نسخة سليمة على الموبايل.
    لو مفيش نت أو فيه ملف فيه غلط: بيكمّل بآخر نسخة محفوظة، وإلا بالمحتوى اللي جوه التطبيق.
-   (فاضي = لسه مفيش ملفات — التطبيق شغال بالمحتوى اللي جواه)
    ========================================================= */
 const SHEETS = {
-  // clinic: "",
-  // faq:    "",
-  // tips:   "",
-  // lists:  ""
+  clinic: "1bFhblaLfWqhLq7_hMXNhdYX2N9U874fjPIdgH9dJPRY",
+  faq:    "16C3XXi30FP69RjLfmJqk5i0NW4UfDnlp7MZEm42CuuU",
+  tips:   "1m6uYIUcsLyi0532P9FvaIQjgruxz4ribBH4OQJnWS-4",
+  lists:  "1aX1yMVk-BoBNctwF7d5LaEm2s4wo15-itMCgrPjZj0g"
 };
 const CKEY = "drkarim_content_v1";
 const sheetUrl = id => "https://docs.google.com/spreadsheets/d/" + id + "/export?format=csv";
@@ -1308,7 +1307,9 @@ function parseCSV(t){
 const cut=(s,n)=>String(s||"").slice(0,n);
 const digits=s=>String(s||"").replace(/[^\d]/g,"");
 const CAT_ICONS={"الحصوات":"🪨","البروستاتا":"🧔","الالتهابات والحرقان":"🔥","المثانة والتبول":"🚻","الدعامة والقسطرة":"🩹","العمليات والمناظير":"🏥","صحة الرجل والخصوبة":"♂️","الأطفال":"🧒","التحاليل والأشعة":"🧪","العيادة والحجز":"📞"};
-function phoneOf(s){ let ph=digits(s); if(ph.startsWith("20")&&ph.length===12) ph="0"+ph.slice(2); return ph.length>=7&&ph.length<=15? ph : null; }
+function phoneOf(s){ let ph=digits(s); if(ph.startsWith("20")&&ph.length===12) ph="0"+ph.slice(2);
+  if(/^1\d{9}$/.test(ph) || /^[2-9]\d{7,8}$/.test(ph)) ph="0"+ph;   // جوجل شيت ساعات بيشيل الصفر اللي في الأول
+  return ph.length>=7&&ph.length<=15? ph : null; }
 // كل جزء بيتراجع لوحده — لو فيه مشكلة بيرجع null والجزء ده بيفضل زي ما هو
 const PARSE = {
   clinic(rows){

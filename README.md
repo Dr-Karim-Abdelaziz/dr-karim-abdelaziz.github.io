@@ -41,8 +41,8 @@
 
 ## تعديل المحتوى من غير برمجة (Google Drive)
 
-لسه مفيش ملفات Drive — التطبيق شغال بالمحتوى اللي جوه `web/`.
-لما تتعمل: حط أرقام الملفات في `web/index.html` ← `const SHEETS` (clinic / faq / tips / lists).
+فولدر **«محتوى تطبيق د. كريم»**: https://drive.google.com/drive/folders/1ydHUKpTlL7GCOMbQZ5ga8LBBRL2kDG3I
+أرقام الملفات في `web/index.html` ← `const SHEETS`. لازم الفولدر يكون **«أي حد معاه اللينك — قارئ»**.
 
 | الملف | بيتحكم في |
 |---|---|
