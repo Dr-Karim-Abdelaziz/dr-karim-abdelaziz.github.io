@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1F3A93">
+<title>د. كريم عبد العزيز — عيادة المسالك</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="د. كريم">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* الألوان الأساسية (الثيم الكحلي تحت بيغطّي عليها) */
+  --plum:#2F76B8; --plum-d:#1E5A8F; --rose:#FDE7F0; --rose2:#F5F9FF;
+  --ink:#1F2A37; --muted:#6B7685; --ok:#2e8b57; --warn:#c0392b; --card:#ffffff;
+  --line:#DCE8F5;
+  --blue:#4A9AE0; --sky:#7DB8EC; --pink:#F28DB5; --pink-d:#B23A6E; --pink-t:#E0679A;
+  --grad:linear-gradient(135deg,#4A9AE0 0%,#7DB8EC 45%,#F28DB5 100%);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{font-family:'Cairo',system-ui,sans-serif;background:var(--rose2);color:var(--ink);font-size:18px;line-height:1.7;padding-bottom:88px}
+header{background:linear-gradient(135deg,var(--plum),var(--plum-d));color:#fff;padding:18px 18px 22px;border-radius:0 0 26px 26px}
+header .dr{font-size:22px;font-weight:800;margin:0}
+header .sp{opacity:.9;font-size:15px;margin:0}
+main{padding:14px;max-width:640px;margin:auto}
+.card{background:var(--card);border-radius:20px;padding:16px;margin-bottom:14px;box-shadow:0 2px 10px rgba(142,59,100,.08);border:1px solid var(--line)}
+h2{font-size:20px;margin:0 0 10px;color:var(--plum-d)}
+h3{font-size:18px;margin:12px 0 6px}
+.muted{color:var(--muted);font-size:15px}
+.big{font-size:34px;font-weight:800;color:var(--plum);line-height:1.2}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.between{justify-content:space-between}
+.bar{height:14px;background:var(--rose);border-radius:10px;overflow:hidden;margin:10px 0}
+.bar>div{height:100%;background:linear-gradient(90deg,#d77fa8,var(--plum));border-radius:10px}
+button,.btn{font-family:inherit;font-size:17px;font-weight:700;border:0;border-radius:14px;padding:12px 16px;background:var(--plum);color:#fff;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.btn2{background:var(--rose);color:var(--plum-d)}
+.btn-ok{background:var(--ok)}
+.btn-warn{background:var(--warn)}
+.btn-sm{padding:7px 12px;font-size:15px;border-radius:11px}
+.full{width:100%}
+input,select,textarea{font-family:inherit;font-size:18px;width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}
+label{display:block;font-weight:700;margin:10px 0 4px}
+.chip{display:inline-block;background:var(--rose);color:var(--plum-d);border-radius:20px;padding:5px 12px;margin:3px;font-size:15px;font-weight:600;cursor:pointer;border:0;font-family:inherit}
+.dose{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px dashed var(--line)}
+.dose:last-child{border-bottom:0}
+.dose.done .t{text-decoration:line-through;color:var(--muted)}
+.tick{width:46px;height:46px;border-radius:50%;border:2.5px solid var(--plum);background:#fff;color:var(--plum);font-size:24px;padding:0}
+.dose.done .tick{background:var(--ok);border-color:var(--ok);color:#fff}
+.alert{background:#fdecea;border:1.5px solid #f5b7b1;border-radius:16px;padding:12px 14px}
+.alert li{margin:3px 0}
+.item{padding:10px 0;border-bottom:1px solid var(--line)}
+.item:last-child{border-bottom:0}
+.past{opacity:.5}
+.tag{font-size:13px;background:var(--rose);color:var(--plum-d);border-radius:8px;padding:2px 8px;font-weight:700}
+nav{position:fixed;bottom:0;right:0;left:0;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:6px 4px calc(6px + env(safe-area-inset-bottom));z-index:10}
+nav button{background:none;color:var(--muted);flex-direction:column;font-size:13px;padding:4px 6px;gap:0;flex:1}
+nav button span{font-size:24px;line-height:1.2}
+nav button.on{color:var(--plum)}
+.tab{display:none}.tab.on{display:block}
+.counter{width:180px;height:180px;border-radius:50%;font-size:56px;margin:12px auto;display:flex;flex-direction:column}
+.counter small{font-size:16px;font-weight:600}
+.center{text-align:center}
+.fruit{font-size:46px}
+.modal{position:fixed;inset:0;background:rgba(45,31,39,.5);display:none;align-items:flex-end;z-index:20}
+.modal.on{display:flex}
+.sheet{background:#fff;width:100%;max-width:640px;margin:auto;border-radius:24px 24px 0 0;padding:18px;max-height:90vh;overflow:auto}
+.toast{position:fixed;top:14px;right:14px;left:14px;background:var(--ink);color:#fff;padding:12px 16px;border-radius:14px;z-index:30;text-align:center;display:none}
+table{width:100%;border-collapse:collapse;font-size:15px}
+#clHours{white-space:pre-line}
+td,th{padding:6px;border-bottom:1px solid var(--line);text-align:right}
+/* الهيدر بصورة الدكتور */
+header{display:flex;align-items:center;gap:14px}
+.av{width:64px;height:64px;border-radius:50%;object-fit:contain;border:3px solid rgba(255,255,255,.85);flex:none;background:#fff}
+.av-s{width:38px;height:38px;border-width:2px;border-color:var(--rose)}
+/* قراءة الروشتة */
+.rx{border:1.5px solid var(--line);border-radius:16px;padding:12px;margin-bottom:12px}
+.rx.off{opacity:.45}
+.rxh{display:flex;align-items:center;gap:10px;margin:0;font-size:18px}
+.rxh input{width:24px;height:24px;flex:none}
+.rx label{font-size:15px;margin:8px 0 2px}
+.rx input,.rx select{font-size:17px;padding:8px 10px}
+.unc{background:#fff6d6 !important;border-color:#e6b800 !important}
+.legend{display:inline-block;background:#fff6d6;border:1.5px solid #e6b800;border-radius:6px;padding:0 6px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.spin{width:44px;height:44px;border:5px solid var(--rose);border-top-color:var(--plum);border-radius:50%;animation:sp 1s linear infinite;margin:16px auto}
+@keyframes sp{to{transform:rotate(360deg)}}
+/* قياساتي */
+.hi{color:var(--warn);font-weight:800}
+.alert.urgent{background:#c0392b;color:#fff;border-color:#922b21}
+/* البوت */
+.seg{display:flex;background:var(--rose);border-radius:14px;padding:4px;gap:4px;margin-top:10px}
+.seg button{flex:1;background:none;color:var(--plum-d);padding:8px}
+.seg button.on{background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+#chatLog{display:flex;flex-direction:column;gap:12px;margin-bottom:12px}
+.msg{display:flex;gap:8px;align-items:flex-start}
+.msg.me{flex-direction:row-reverse}
+.bub{background:#fff;border:1px solid var(--line);border-radius:18px;border-top-right-radius:6px;padding:10px 14px;max-width:85%;box-shadow:0 1px 6px rgba(142,59,100,.06)}
+.msg.me .bub{background:var(--plum);color:#fff;border-color:var(--plum);border-radius:18px;border-top-left-radius:6px}
+.bub p{margin:4px 0}
+.bub .q{font-weight:800;color:var(--plum-d)}
+.bub.em{background:#fdecea;border-color:#f5b7b1}
+.draft{display:inline-block;font-size:12px;font-weight:700;background:#fff6d6;color:#7a5c00;border:1px solid #e6b800;border-radius:8px;padding:1px 8px;margin-top:4px}
+.askbar{display:flex;gap:8px;align-items:flex-end;position:sticky;bottom:80px;background:var(--rose2);padding:8px 0}
+.askbar textarea{resize:none;min-height:50px}
+.dots span{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--muted);margin:0 2px;animation:dt 1.2s infinite}
+.dots span:nth-child(2){animation-delay:.2s}.dots span:nth-child(3){animation-delay:.4s}
+@keyframes dt{0%,80%,100%{opacity:.25}40%{opacity:1}}
+details.cat{border-bottom:1px solid var(--line);padding:6px 0}
+details.cat>summary{font-weight:800;font-size:18px;cursor:pointer;padding:6px 0;color:var(--plum-d)}
+details.qa{margin:4px 0;background:var(--rose2);border-radius:12px;padding:6px 12px}
+details.qa>summary{cursor:pointer;font-weight:700}
+details.qa p{margin:6px 0}
+/* التقرير (بيتعمل بره الشاشة ويتحوّل PDF) */
+#report{position:fixed;top:0;left:-10000px;width:794px;background:#fff;color:#222;font-family:'Cairo',sans-serif;font-size:15px;line-height:1.6;direction:rtl;padding:36px 42px}
+#report .rh{display:flex;align-items:center;gap:18px;border-bottom:4px solid var(--plum);padding-bottom:14px;margin-bottom:16px}
+#report .rh img{width:92px;height:92px;border-radius:50%;object-fit:contain;border:3px solid var(--rose);background:#fff}
+#report .rh h1{margin:0;font-size:26px;color:var(--plum-d)}
+#report .rh .sub{color:#666;font-size:14px}
+#report .rt{margin-inline-start:auto;text-align:left;font-size:14px;color:#444;flex:none;white-space:nowrap}
+#report .rh>div:nth-child(2){flex:1;min-width:0}
+#report .rt b{display:block;font-size:19px;color:var(--plum)}
+#report .blk{margin-bottom:14px}
+#report h2{font-size:17px;background:var(--rose);color:var(--plum-d);padding:4px 12px;border-radius:8px;margin:0 0 6px}
+#report table{font-size:14px}
+#report th{background:#faf3f6;color:var(--plum-d)}
+#report .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+#report .grid div{border:1px solid var(--line);border-radius:10px;padding:6px 10px}
+#report .grid small{display:block;color:#777;font-size:12px}
+#report .grid b{font-size:17px}
+#report .none{color:#888;font-size:14px;margin:2px 4px}
+#report .qs{white-space:pre-wrap;border:1px dashed var(--plum);border-radius:10px;padding:8px 12px;min-height:40px}
+#report .foot{border-top:1px solid var(--line);padding-top:8px;margin-top:18px;color:#888;font-size:12px;text-align:center}
+/* ===== ثيم كحلي (ألوان اللوجو) ===== */
+:root{--plum:#1F3A93;--plum-d:#16307E;--rose:#E8EEFA;--rose2:#F4F7FB;--line:#DCE3F0;--accent:#5B7FD0}
+header{background:linear-gradient(135deg,#16307E 0%,#2747A8 55%,#5B7FD0 100%)}
+.bar>div{background:linear-gradient(90deg,#5B7FD0,#1F3A93)}
+.card{box-shadow:0 2px 10px rgba(31,58,147,.08)}
+.bub{box-shadow:0 1px 6px rgba(31,58,147,.06)}
+.msg.me .bub{background:linear-gradient(135deg,#1F3A93,#2747A8);border-color:#1F3A93}
+.counter{background:linear-gradient(135deg,#2747A8,#5B7FD0)}
+.dose.done .tick{background:#2e8b57;border-color:#2e8b57;color:#fff}
+#report .rh{border-bottom-color:#1F3A93}
+#report .rh img{width:auto;height:84px;max-width:230px;border-radius:0;border:0}
+#report th{background:#EEF2FA}
+/* المية + يوميات التبول */
+.water{display:flex;align-items:center;justify-content:center;gap:16px;margin:8px 0}
+.water .cup{font-size:44px;font-weight:800;color:var(--plum);min-width:120px;text-align:center;line-height:1.1}
+.water .cup small{display:block;font-size:14px;color:var(--muted);font-weight:600}
+.water button{width:62px;height:62px;border-radius:50%;font-size:30px;padding:0}
+.wrem{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;margin-top:8px;cursor:pointer}
+.wrem input{width:20px;height:20px}
+.sym{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:6px 0}
+.sym label{display:inline-flex;align-items:center;gap:6px;margin:0;font-weight:600;font-size:15px;background:var(--rose);color:var(--plum-d);border-radius:20px;padding:6px 12px;cursor:pointer}
+.sym input{width:18px;height:18px}
+.stent{border:2px solid var(--plum)}
+ol.steps{margin:0;padding-inline-start:22px}
+ol.steps li{margin:5px 0}
+</style>
+</head>
+<body>
+
+<header>
+  <img class="av" src="symbol.png" alt="">
+  <div>
+    <p class="dr" id="drName"></p>
+    <p class="sp" id="drTitle"></p>
+  </div>
+</header>
+
+<main>
+<!-- ================= الرئيسية ================= -->
+<section class="tab on" id="t-home">
+  <div class="card" id="setupCard" style="display:none">
+    <h2>أهلاً بيك 👋</h2>
+    <p class="muted">علشان نظبط لك المتابعة، اكتب اسمك وسبب متابعتك مع الدكتور. البيانات دي بتفضل على موبايلك بس.</p>
+    <label>الاسم</label>
+    <input id="pName" placeholder="مثال: أحمد محمد">
+    <div class="two">
+      <div><label>السن (اختياري)</label><input type="number" inputmode="numeric" id="pAge" placeholder="مثلًا 45"></div>
+      <div><label>هدف المية (كوباية/يوم)</label><input type="number" inputmode="numeric" id="pWater" placeholder="تلقائي"></div>
+    </div>
+    <label>سبب المتابعة</label>
+    <select id="pCond"></select>
+    <label>تاريخ العملية أو المنظار (لو فيه — اختياري)</label>
+    <input type="date" id="pOp">
+    <label>ميعاد شيل الدعامة JJ (لو عندك دعامة)</label>
+    <input type="date" id="pStent">
+    <p class="muted" style="margin:4px 0 0">الدعامة لازم تتشال أو تتغيّر في الميعاد اللي الدكتور قاله — التطبيق هيفكّرك قبلها.</p>
+    <br>
+    <button class="full" onclick="saveProfile()">ابدأ المتابعة</button>
+  </div>
+
+  <div id="homeMain" style="display:none">
+    <div class="card">
+      <div class="muted" id="hello"></div>
+      <div class="big" id="condBig" style="font-size:26px"></div>
+      <div class="muted" id="opText"></div>
+    </div>
+
+    <div id="homeStent"></div>
+    <div id="homeAlert"></div>
+
+    <div class="card center">
+      <h2>💧 المية النهارده</h2>
+      <div class="water">
+        <button class="btn2" onclick="water(-1)" aria-label="ناقص كوباية">−</button>
+        <div class="cup" id="wCount">0</div>
+        <button onclick="water(1)" aria-label="زوّد كوباية">+</button>
+      </div>
+      <div class="bar"><div id="wBar"></div></div>
+      <div class="muted" id="wInfo"></div>
+      <label class="wrem"><input type="checkbox" id="wRemind"> 🔔 فكّرني أشرب كل ساعتين</label>
+    </div>
+
+    <div class="card">
+      <h2>💊 أدوية النهارده</h2>
+      <div id="todayDoses"></div>
+    </div>
+
+    <div class="card">
+      <h2>📅 الموعد الجاي</h2>
+      <div id="nextAppt"></div>
+    </div>
+
+    <div class="card">
+      <h2>💡 نصايح ليك</h2>
+      <ul id="tipsList" style="margin:0;padding-inline-start:20px"></ul>
+      <p class="muted" style="margin-bottom:0">نصايح عامة — تعليمات د. كريم ليك هي الأساس دايمًا.</p>
+    </div>
+
+    <div class="alert">
+      <b>🚨 كلّم العيادة أو روح الطوارئ فورًا لو حصل:</b>
+      <ul id="dangerList" style="margin:6px 0 0;padding-inline-start:20px"></ul>
+      <div class="row" style="margin-top:10px">
+        <a class="btn btn-warn" id="emCall">📞 اتصال بالعيادة</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= الأدوية ================= -->
+<section class="tab" id="t-meds">
+  <div class="card">
+    <div class="row between"><h2 style="margin:0">💊 أدويتي</h2><button class="btn-sm" onclick="openMed()">+ إضافة</button></div>
+    <p class="muted">اكتب الأدوية زي ما د. كريم كتبهالك بالظبط، ومواعيدها.</p>
+    <div class="row" style="margin-bottom:6px">
+      <button style="flex:1" onclick="pickRx('prescription')">📷 صوّر الروشتة</button>
+      <button class="btn2" style="flex:1" onclick="pickRx('box')">📦 علبة دوا</button>
+      <input type="file" id="rxFile" accept="image/*" style="display:none">
+    </div>
+    <div id="medList"></div>
+  </div>
+  <div class="card">
+    <h2>🔔 التنبيهات</h2>
+    <p class="muted" id="notifHint">علشان التنبيه يرن حتى والتطبيق مقفول، دوس «أضف للتقويم» جنب كل ميعاد — هيتسجل في تقويم الموبايل ويرن كل يوم.</p>
+    <div id="notifState"></div>
+    <button class="btn2 full" id="notifBtn" onclick="askNotif()">تفعيل تنبيهات التطبيق</button>
+  </div>
+</section>
+
+<!-- ================= المواعيد ================= -->
+<section class="tab" id="t-appts">
+  <div class="card">
+    <div class="row between"><h2 style="margin:0">📅 مواعيدي</h2><button class="btn-sm" onclick="openAppt()">+ موعد</button></div>
+    <div id="apptList" style="margin-top:8px"></div>
+  </div>
+  <div class="card">
+    <h2>📞 الحجز</h2>
+    <p class="muted" id="apBook" style="margin-top:0"></p>
+    <a class="btn btn-ok full" id="apCall">📞 اتصل للحجز</a>
+  </div>
+</section>
+
+<!-- ================= متابعتي ================= -->
+<section class="tab" id="t-tools">
+  <div class="card center">
+    <h2>🚻 يوميات التبول</h2>
+    <p class="muted">دوس الزرار كل مرة تدخل الحمام، وعلّم الأعراض لو فيه. اليوميات دي بتساعد الدكتور جدًا في البروستاتا والمثانة والالتهابات.</p>
+    <div class="sym">
+      <label><input type="checkbox" id="sBurn"> 🔥 حرقان</label>
+      <label><input type="checkbox" id="sBlood"> 🩸 دم</label>
+      <label><input type="checkbox" id="sUrg"> ⏱️ زنقة / إلحاح</label>
+      <label><input type="checkbox" id="sWeak"> 💧 ضعف أو تقطيع</label>
+      <label><input type="checkbox" id="sLeak"> 💦 تسريب</label>
+    </div>
+    <button class="counter" id="voidBtn" onclick="logVoid()">0<small>سجّل مرة</small></button>
+    <div class="muted" id="voidInfo"></div>
+    <div id="voidAlert"></div>
+    <div id="voidHist" style="margin-top:10px"></div>
+    <button class="btn2 btn-sm" onclick="undoVoid()" style="margin-top:8px">↩ امسح آخر مرة</button>
+  </div>
+
+  <div class="card" id="vitalsCard">
+    <h2>📊 قياساتي وتحاليلي</h2>
+    <p class="muted" style="margin-top:0">سجّل اللي عندك بس — مش لازم الكل مع بعض.</p>
+    <label>التاريخ</label>
+    <input type="date" id="vDate">
+    <label>الضغط (العالي / الواطي)</label>
+    <div class="two">
+      <input type="number" inputmode="numeric" id="vSys" placeholder="العالي مثلًا 120">
+      <input type="number" inputmode="numeric" id="vDia" placeholder="الواطي مثلًا 80">
+    </div>
+    <div class="two">
+      <div><label>الحرارة (°C)</label><input type="number" inputmode="decimal" step="0.1" id="vTemp" placeholder="مثلًا 37"></div>
+      <div><label>السكر (mg/dL)</label><input type="number" inputmode="numeric" id="vSug" placeholder="مثلًا 110"></div>
+    </div>
+    <div class="two">
+      <div><label>الكرياتينين (mg/dL)</label><input type="number" inputmode="decimal" step="0.01" id="vCr" placeholder="مثلًا 1.0"></div>
+      <div><label>PSA (ng/mL)</label><input type="number" inputmode="decimal" step="0.01" id="vPsa" placeholder="مثلًا 1.5"></div>
+    </div>
+    <br>
+    <button class="full" onclick="saveVital()">حفظ</button>
+    <div id="vAlert" style="margin-top:10px"></div>
+    <div id="vHist" style="margin-top:10px;overflow-x:auto"></div>
+  </div>
+
+  <div class="card">
+    <h2>🏥 تعليمات بعد العمليات والمناظير</h2>
+    <p class="muted" style="margin-top:0">تعليمات عامة — لو د. كريم قالك حاجة مختلفة امشي على كلامه هو.</p>
+    <ol class="steps" id="postopList"></ol>
+  </div>
+</section>
+
+<!-- ================= اسأل د. كريم ================= -->
+<section class="tab" id="t-ask">
+  <div class="card">
+    <div class="row" style="flex-wrap:nowrap">
+      <img class="av av-s" src="symbol.png" alt="" style="width:52px;height:52px">
+      <div><h2 style="margin:0">اسأل د. كريم</h2><div class="muted">إجابات عامة على الأسئلة الشائعة — مش بديل عن الكشف.</div></div>
+    </div>
+    <div class="seg">
+      <button class="on" id="segChat" onclick="askMode('chat')">💬 اسأل</button>
+      <button id="segBrowse" onclick="askMode('browse')">📚 كل الأسئلة</button>
+    </div>
+  </div>
+
+  <div id="askChat">
+    <div id="chatLog"></div>
+    <div id="askSug"></div>
+    <div class="askbar">
+      <textarea id="askIn" rows="1" placeholder="اكتب سؤالك هنا…"></textarea>
+      <button onclick="ask()" aria-label="إرسال">إرسال</button>
+    </div>
+  </div>
+
+  <div id="askBrowse" style="display:none">
+    <div class="card">
+      <input id="faqSearch" type="search" placeholder="🔎 دوّر في الأسئلة…">
+      <div id="faqList" style="margin-top:8px"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= العيادة ================= -->
+<section class="tab" id="t-clinic">
+  <div class="card">
+    <h2>🏥 العيادة</h2>
+    <p id="clAddr"></p>
+    <p class="muted" id="clHours"></p>
+    <p id="clFee" style="font-weight:700;margin-top:0"></p>
+    <div class="row">
+      <a class="btn" id="clCall">📞 موبايل الحجز</a>
+      <a class="btn btn2" id="clCall2">☎️ تليفون العيادة</a>
+      <a class="btn btn2" id="clMap" target="_blank">📍 اللوكيشن</a>
+    </div>
+  </div>
+  <div class="card">
+    <h2>📞 الحجز</h2>
+    <p id="clBook" style="margin-top:0"></p>
+    <a class="btn btn-ok full" id="bkCall">📞 اتصل للحجز</a>
+  </div>
+  <div class="card">
+    <h2>📄 تقرير للدكتور</h2>
+    <p class="muted" style="margin-top:0">ملف PDF فيه بياناتك وأدويتك والتزامك بيها ويوميات التبول والمية وقياساتك وتحاليلك — تبعته للدكتور أو توريه له في الكشف.</p>
+    <label>❓ أسئلة للدكتور</label>
+    <textarea id="drQs" rows="4" placeholder="اكتب أي حاجة عايز تسأل د. كريم عنها…"></textarea>
+    <br><br>
+    <button class="full" id="repBtn" onclick="makeReport()">📄 تقرير للدكتور</button>
+  </div>
+  <div class="card">
+    <h2>⚙️ بياناتي</h2>
+    <div id="myData" class="muted"></div>
+    <div class="row" style="margin-top:8px">
+      <button class="btn2 btn-sm" onclick="editProfile()">تعديل بياناتي</button>
+      <button class="btn2 btn-sm" onclick="exportData()">نسخة احتياطية</button>
+      <button class="btn2 btn-sm" onclick="document.getElementById('impFile').click()">استرجاع</button>
+      <input type="file" id="impFile" accept=".json" style="display:none" onchange="importData(this)">
+    </div>
+    <p class="muted" style="margin-bottom:0">🔒 بياناتك محفوظة على موبايلك بس — مش بتتبعت لأي حد.</p>
+  </div>
+</section>
+</main>
+
+<nav>
+  <button class="on" data-t="home"><span>🏠</span>الرئيسية</button>
+  <button data-t="meds"><span>💊</span>أدويتي</button>
+  <button data-t="appts"><span>📅</span>مواعيدي</button>
+  <button data-t="tools"><span>📋</span>متابعتي</button>
+  <button data-t="ask"><span>💬</span>اسأل</button>
+  <button data-t="clinic"><span>🏥</span>العيادة</button>
+</nav>
+
+<!-- نافذة دواء -->
+<div class="modal" id="medModal"><div class="sheet">
+  <h2 id="medTitle">إضافة دواء</h2>
+  <div id="quickMeds"></div>
+  <label>اسم الدواء</label>
+  <input id="mName">
+  <label>الجرعة / طريقة الاستخدام (زي ما في الروشتة)</label>
+  <input id="mNote" placeholder="مثال: قرص بعد العشا">
+  <label>المواعيد</label>
+  <div id="mTimes"></div>
+  <button class="btn2 btn-sm" onclick="addTimeInput()">+ ميعاد تاني</button>
+  <br><br>
+  <div class="row">
+    <button onclick="saveMed()" style="flex:1">حفظ</button>
+    <button class="btn2" onclick="closeM('medModal')">إلغاء</button>
+  </div>
+  <input type="hidden" id="mId">
+</div></div>
+
+<!-- نافذة موعد -->
+<div class="modal" id="apptModal"><div class="sheet">
+  <h2>إضافة موعد</h2>
+  <label>نوع الموعد</label>
+  <input id="aTitle" list="apptTypes" placeholder="كشف / متابعة / أشعة / تحاليل">
+  <datalist id="apptTypes"></datalist>
+  <label>التاريخ</label><input type="date" id="aDate">
+  <label>الساعة</label><input type="time" id="aTime" value="20:00">
+  <label>ملاحظة</label><input id="aNote">
+  <br><br>
+  <div class="row">
+    <button onclick="saveAppt()" style="flex:1">حفظ</button>
+    <button class="btn2" onclick="closeM('apptModal')">إلغاء</button>
+  </div>
+</div></div>
+
+<!-- نافذة مراجعة الروشتة -->
+<div class="modal" id="rxModal"><div class="sheet">
+  <h2>📷 مراجعة الروشتة</h2>
+  <div id="rxBody"></div>
+</div></div>
+
+<div id="report" aria-hidden="true"></div>
+
+<div class="toast" id="toast"></div>
+<script src="faq.js"></script>
+
+<script>
+/* =========================================================
+   ⚙️ بيانات العيادة — غيّر القيم دي بس
+   ========================================================= */
+const CLINIC = {
+  doctor:   "د. كريم عبد العزيز",
+  title:    "عيادة جراحة المسالك البولية",
+  phone:    "01000147841",        // موبايل الحجز (زرار الاتصال الأساسي)
+  phone2:   "0623445029",         // تليفون العيادة الأرضي
+  whatsapp: "",                   // مفيش حجز واتساب
+  address:  "السويس — الملاحة الجديدة، شارع المدينة الرياضية، برج رويال بلازا الطبي، الدور التالت، عيادة 309 — بجوار ميزة سكان للأشعة وتوكيل ميتسوبيشي إبراهيم فرج",
+  hours:    "من السبت إلى الأربعاء: من 8 إلى 11 مساءً",
+  fee:      "400",                // سعر الكشف بالجنيه (فاضي = مش بيظهر)
+  booking:  "الحجز والاستفسار بالتليفون على 01000147841 بعد الساعة 2:30 ظهرًا — مفيش حجز على الواتساب.",
+  map:      "",                   // لينك اللوكيشن من Google Maps (فاضي = الزرار مش بيظهر)
+
+  // خدمة قراءة الروشتة وبوت الأسئلة (Cloudflare Worker — نفس خدمة دوايا)
+  reader:   "https://dawaya-reader.elhamoly27.workers.dev",  // رابط الخدمة من غير / في الآخر
+  token:    "",                     // بيتحط وقت البناء من secret اسمه APP_TOKEN
+};
+/* ========================================================= */
+
+/* ---------- جوه تطبيق الأندرويد (APK) ----------
+   التطبيق بيحط قناة اسمها DrMagdy (اسم داخلي ثابت): بنكلّم الخدمة والواتساب والمشاركة من خلالها. */
+const NATIVE = typeof window.DrMagdy !== "undefined";
+const _nat = {}; let _natId = 0;
+function native(type, data){ return new Promise(ok=>{ const id=++_natId; _nat[id]=ok; window.DrMagdy.postMessage(JSON.stringify(Object.assign({id,type},data||{}))); }); }
+window.__nativeReply = (id,res)=>{ const f=_nat[id]; delete _nat[id]; if(f) f(res); };
+// طلب POST للخدمة: جوه التطبيق بيروح من الأندرويد نفسه (من غير قيود المتصفح)
+async function postJSON(url, headers, body, timeoutMs){
+  if(NATIVE){
+    const r = await native("post",{url, headers, body:JSON.stringify(body), timeout:timeoutMs});
+    if(!r || !r.status) { const e=new Error(r&&r.error||"net"); e.name=/timeout/i.test(r&&r.error||"")?"AbortError":"NetError"; throw e; }
+    let data={}; try{ data=JSON.parse(r.body); }catch(e){}
+    return {ok:r.status>=200&&r.status<300, status:r.status, data};
+  }
+  const ctl=new AbortController(), tm=setTimeout(()=>ctl.abort(),timeoutMs);
+  try{
+    const res=await fetch(url,{method:"POST",signal:ctl.signal,headers:Object.assign({"content-type":"application/json"},headers),body:JSON.stringify(body)});
+    const data=await res.json().catch(()=>({}));
+    return {ok:res.ok, status:res.status, data};
+  } finally { clearTimeout(tm); }
+}
+function openExt(url){ if(NATIVE) native("open",{url}); else window.open(url,"_blank"); }
+// مشاركة ملف (التقرير / النسخة الاحتياطية) — جوه التطبيق بتفتح قايمة المشاركة (واتساب…)
+function shareFile(name, mime, b64, text){ return native("share",{name, mime, b64, text}); }
+// جوه التطبيق: أي لينك بره (واتساب، اتصال، تقويم، خريطة) يتفتح في تطبيقه
+if(NATIVE) document.addEventListener("click",e=>{
+  const a=e.target.closest && e.target.closest("a[href]"); if(!a) return;
+  const h=a.getAttribute("href")||""; if(!h || h[0]==="#" || h.startsWith("javascript") || a.hasAttribute("download")) return;
+  e.preventDefault(); openExt(a.href);
+},true);
+function blobToB64(blob){ return new Promise(ok=>{ const r=new FileReader(); r.onload=()=>ok(String(r.result).split(",")[1]); r.readAsDataURL(blob); }); }
+
+const KEY = "drkarim_app_v1";
+let S = load();
+function blank(){ return {profile:null, meds:[], taken:{}, appts:[], water:{}, voids:[], vitals:[], questions:""}; }
+function load(){
+  try{ const d = JSON.parse(localStorage.getItem(KEY)); if(d) return Object.assign(blank(), d); }catch(e){}
+  return blank();
+}
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){ toast("مش قادر أحفظ على الجهاز ده"); } syncReminders(); }
+const $ = id => document.getElementById(id);
+const uid = () => Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const DAY = 86400000;
+function toast(m){ const t=$("toast"); t.textContent=m; t.style.display="block"; clearTimeout(t._h); t._h=setTimeout(()=>t.style.display="none",2600); }
+function ymd(d){ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+function parseD(s){ const [y,m,d]=s.split("-").map(Number); return new Date(y,m-1,d); }
+function fmtD(d){ return d.toLocaleDateString("ar-EG",{weekday:"long",day:"numeric",month:"long"}); }
+function fmtT(t){ const [h,m]=t.split(":").map(Number); const p=h<12?"ص":"م"; const hh=h%12||12; return hh+":"+String(m).padStart(2,"0")+" "+p; }
+// الملاحظة فيها عربي وإنجليزي (5 mg • 1 tab • بعد الأكل) — كل جزء في <bdi> علشان الترتيب ما يتلخبطش
+function noteHtml(n){ return String(n||"").split(" • ").map(x=>"<bdi>"+esc(x)+"</bdi>").join(" • "); }
+function esc(s){ return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function today0(){ const d=new Date(); d.setHours(0,0,0,0); return d; }
+
+
+/* ---------- بيانات العيادة والقوائم في الواجهة (بتتحدّث من ملفات جوجل) ---------- */
+let DANGER_SIGNS=["البول وقف خالص أو مش قادر تتبول والمثانة مليانة","دم كتير في البول أو جلطات دم","سخونية 38 أو أكتر مع رعشة أو وجع في الجنب","مغص كلوي جامد مش بيهدى بالمسكن","وجع مفاجئ وشديد في الخصية أو ورم فيها","القسطرة اتسدت أو البول مش بينزل في الكيس","ترجيع مستمر ومش قادر تشرب"];
+let QUICK=["مضاد حيوي","مسكن","موسّع للحالب","دوا البروستاتا","فوار / مذيب للحصوات","دوا المثانة"];
+let APPT_TYPES=["كشف","متابعة / استشارة","أشعة","تحاليل","شيل الدعامة","متابعة بعد العملية"];
+// أسباب المتابعة (الرقم الإنجليزي ثابت — الاسم ممكن يتغيّر)
+const CONDS=[["stones","حصوات الكلى والحالب"],["prostate","البروستاتا"],["uti","التهابات المسالك المتكررة"],["bladder","المثانة (سلس / تبول كتير)"],["male","صحة الرجل والخصوبة"],["kids","مسالك الأطفال"],["postop","متابعة بعد عملية أو منظار"],["general","كشف عام / حاجة تانية"]];
+const condName=id=>(CONDS.find(c=>c[0]===id)||["",""])[1];
+function telHref(n){ return "tel:"+String(n||"").replace(/[^\d+]/g,""); }
+function applyClinicUI(){
+  $("drName").textContent = CLINIC.doctor;
+  $("drTitle").textContent = CLINIC.title;
+  $("clAddr").textContent = CLINIC.address ? "📍 " + CLINIC.address : "";
+  $("clAddr").style.display = CLINIC.address ? "" : "none";
+  $("clHours").textContent = CLINIC.hours ? "🕗 " + CLINIC.hours : "";
+  $("clFee").textContent = CLINIC.fee ? "💵 الكشف: " + CLINIC.fee + " جنيه" : "";
+  $("clFee").style.display = CLINIC.fee ? "" : "none";
+  $("clBook").textContent = $("apBook").textContent = CLINIC.booking || "";
+  $("clCall").href = $("emCall").href = $("bkCall").href = $("apCall").href = telHref(CLINIC.phone);
+  if(CLINIC.phone2){ $("clCall2").href = telHref(CLINIC.phone2); $("clCall2").style.display=""; } else $("clCall2").style.display="none";
+  if(CLINIC.map){ $("clMap").href = CLINIC.map; $("clMap").style.display=""; } else $("clMap").style.display="none";
+  $("dangerList").innerHTML = DANGER_SIGNS.map(x=>"<li>"+esc(x)+"</li>").join("");
+  $("postopList").innerHTML = POSTOP.map(x=>"<li>"+esc(x)+"</li>").join("");
+  $("quickMeds").innerHTML = QUICK.map(x=>'<span class="chip" data-q="'+esc(x)+'">'+esc(x)+'</span>').join("");
+  const c=$("pCond").value; $("pCond").innerHTML = CONDS.map(([id,n])=>'<option value="'+id+'">'+esc(n)+'</option>').join(""); if(c) $("pCond").value=c;
+  $("apptTypes").innerHTML = APPT_TYPES.map(x=>"<option>"+esc(x)+"</option>").join("");
+}
+$("quickMeds").onclick = e => { const c=e.target.closest(".chip"); if(c) qm(c.dataset.q); };
+
+/* ---------- التنقل ---------- */
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>go(b.dataset.t));
+function go(t){
+  document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",b.dataset.t===t));
+  document.querySelectorAll(".tab").forEach(s=>s.classList.toggle("on",s.id==="t-"+t));
+  window.scrollTo(0,0); render();
+  if(t==="ask") initChat();
+}
+
+/* ---------- بياناتي ---------- */
+let TIPS={
+  stones:["اشرب مية كتير طول اليوم لحد ما لون البول يبقى فاتح — غالبًا 2.5 لـ 3 لتر، إلا لو الدكتور قال غير كده.","قلّل الملح والأكل المحفوظ والمخللات والشيبسي.","ما تبطّلش اللبن والجبنة من نفسك — الكالسيوم في الأكل مش هو سبب الحصوات غالبًا.","قلّل اللحوم الحمرا والمشروبات الغازية، والليمون مفيد.","لو نزلت منك حصوة احتفظ بيها وهاتها معاك الكشف علشان تتحلل."],
+  prostate:["قلّل الشرب قبل النوم بساعتين، وقلّل القهوة والشاي بالليل.","ما تحبسش البول كتير — ادخل الحمام أول ما تحس.","أدوية البرد اللي فيها مضاد احتقان ممكن تحبس البول — اسأل الأول.","حلّل PSA في المواعيد اللي الدكتور يحددها وسجّله في «متابعتي».","سجّل يوميات التبول كام يوم قبل الكشف — بتساعد الدكتور جدًا."],
+  uti:["اشرب مية كفاية وما تحبسش البول.","كمّل كورس المضاد الحيوي للآخر حتى لو الأعراض راحت.","ما تاخدش مضاد حيوي من نفسك — مزرعة البول قبل العلاج بتفرق.","للستات: النضافة من قدام لورا، والتبول بعد العلاقة.","السخونية مع وجع الجنب محتاج كشف سريع."],
+  bladder:["قلّل القهوة والشاي ومشروبات الطاقة والمياه الغازية.","درّب المثانة: طوّل الوقت بين كل مرة والتانية شوية بشوية.","تمارين قاع الحوض (كيجل) بانتظام بتفرق مع السلس.","ما تقللش المية جامد — البول المركّز بيهيّج المثانة.","سجّل يوميات التبول 3 أيام قبل الكشف."],
+  male:["ابعد عن التدخين — بيأثر على الانتصاب والخصوبة.","رياضة منتظمة ووزن مظبوط بيفرقوا جدًا.","ما تاخدش منشطات أو هرمونات من غير الدكتور.","تحليل السائل المنوي: امتناع من 2 لـ 5 أيام قبله حسب تعليمات المعمل.","ابعد الحرارة الزيادة عن الخصية (اللابتوب على الرجل والساونا الكتير)."],
+  kids:["خلّي الطفل يدخل الحمام كل 2 لـ 3 ساعات وما يحبسش.","الإمساك بيأثر على المثانة عند الأطفال — اهتم بالخضار والمية.","السخونية من غير سبب واضح عند طفل عنده مشكلة في الكلى محتاج تحليل بول.","ما تزعّقش للطفل على التبول اللاإرادي — ده مش بإرادته."],
+  postop:["اشرب مية كتير في الأيام الأولى، إلا لو الدكتور قال غير كده.","شوية دم خفيف في البول بعد المنظار ممكن يكون عادي في الأول — لكن الجلطات أو الدم التقيل محتاجين اتصال.","ما تشيلش حاجة تقيلة ولا تعمل مجهود جامد لحد ما الدكتور يسمح.","لو عندك دعامة: سجّل ميعاد شيلها في «بياناتي» وما تنساهوش.","خد الأدوية في مواعيدها وكمّل المضاد الحيوي."],
+  general:["اشرب مية كفاية — لون البول الفاتح علامة كويسة.","ما تحبسش البول لفترات طويلة.","ما تاخدش مضادات حيوية أو مسكنات كتير من نفسك.","هات معاك كل التحاليل والأشعة القديمة في الكشف."]
+};
+let POSTOP=["اشرب مية كتير (حوالي 2.5 لـ 3 لتر في اليوم) إلا لو الدكتور قال غير كده.","خد المضاد الحيوي والمسكن في مواعيدهم وكمّل الكورس.","دم خفيف أو حرقان بسيط في البول في الأيام الأولى ممكن يكون متوقع — لو زاد أو ظهرت جلطات كلّم العيادة.","لو عندك دعامة (JJ): وجع خفيف في الجنب أو زنقة وقت التبول غالبًا عادي. سجّل ميعاد شيلها في «بياناتي».","لو عندك قسطرة: خلّي الكيس دايمًا أوطى من المثانة، ما تشدهاش، ونضّف مكانها بمية وصابون.","ما تشيلش حاجة تقيلة ولا تعمل مجهود جامد أو علاقة لحد ما الدكتور يسمح.","الإمساك والزحير بيزوّدوا النزيف — كُل خضار واشرب مية.","كلّم العيادة فورًا لو: سخونية 38 أو أكتر، البول وقف، القسطرة اتسدت، أو دم تقيل بجلطات."];
+function waterGoal(){ const P=S.profile||{}; return P.goal || (P.cond==="stones"||P.cond==="postop" ? 12 : 8); }
+function saveProfile(){
+  const name=$("pName").value.trim();
+  if(!name){ toast("اكتب اسمك"); return; }
+  const age=parseInt($("pAge").value,10), goal=parseInt($("pWater").value,10);
+  if($("pAge").value && !(age>0 && age<110)){ toast("السن مش مظبوط، راجعه"); return; }
+  if($("pWater").value && !(goal>=1 && goal<=30)){ toast("هدف المية من 1 لـ 30 كوباية"); return; }
+  const old=S.profile||{};
+  S.profile={name, age:age>0?age:null, goal:goal>0?goal:null, cond:$("pCond").value, op:$("pOp").value||"", stent:$("pStent").value||"", waterRemind:!!old.waterRemind};
+  editing=false; save(); render(); toast("تمام! بدأنا المتابعة ✓");
+  if(S.profile.stent) ensureNotifPermission(true);
+}
+let editing=false;
+function editProfile(){
+  if(S.profile){ const P=S.profile; $("pName").value=P.name||""; $("pAge").value=P.age||""; $("pWater").value=P.goal||""; $("pCond").value=P.cond||"general"; $("pOp").value=P.op||""; $("pStent").value=P.stent||""; }
+  editing=true; go("home");
+}
+/* ---------- الأدوية ---------- */
+function openMed(id){
+  const m = S.meds.find(x=>x.id===id);
+  $("medTitle").textContent = m?"تعديل دواء":"إضافة دواء";
+  $("mId").value = m?m.id:""; $("mName").value=m?m.name:""; $("mNote").value=m?m.note:"";
+  $("mTimes").innerHTML=""; (m?m.times:["09:00"]).forEach(addTimeInput);
+  $("medModal").classList.add("on");
+}
+function qm(n){ $("mName").value=n; }
+function addTimeInput(v){
+  const w=document.createElement("div"); w.className="row"; w.style.marginBottom="6px";
+  w.innerHTML='<input type="time" value="'+(typeof v==="string"?v:"21:00")+'" style="flex:1"><button class="btn2 btn-sm" onclick="this.parentNode.remove()">✕</button>';
+  $("mTimes").appendChild(w);
+}
+function saveMed(){
+  const name=$("mName").value.trim(); if(!name){ toast("اكتب اسم الدواء"); return; }
+  const times=[...$("mTimes").querySelectorAll("input")].map(i=>i.value).filter(Boolean).sort();
+  if(!times.length){ toast("حط ميعاد واحد على الأقل"); return; }
+  const id=$("mId").value;
+  if(id){ Object.assign(S.meds.find(x=>x.id===id),{name,note:$("mNote").value.trim(),times}); }
+  else S.meds.push({id:uid(),name,note:$("mNote").value.trim(),times,added:ymd(new Date())});
+  save(); closeM("medModal"); render(); toast("اتحفظ ✓"); ensureNotifPermission();
+}
+function delMed(id){ if(confirmDel(id)){ S.meds=S.meds.filter(x=>x.id!==id); save(); render(); } }
+let _delArm=0, _delWhat=null;
+function confirmDel(what){ if(Date.now()-_delArm<3000 && _delWhat===what){ _delArm=0; return true; } _delArm=Date.now(); _delWhat=what; toast("دوس «مسح» تاني للتأكيد"); return false; }
+function toggleDose(k){ const t=ymd(new Date()); S.taken[t]=S.taken[t]||{}; S.taken[t][k]=!S.taken[t][k]; save(); render(); }
+function gcalDaily(name,note,time){
+  const [h,m]=time.split(":"); const d=ymd(new Date()).replace(/-/g,"");
+  const st=d+"T"+h+m+"00", en=d+"T"+h+String(Math.min(+m+10,59)).padStart(2,"0")+"00";
+  return "https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent("💊 "+name)+"&details="+encodeURIComponent(note||"")+"&dates="+st+"/"+en+"&recur="+encodeURIComponent("RRULE:FREQ=DAILY")+"&ctz=Africa/Cairo";
+}
+function gcalOnce(title,date,time,note){
+  const d=date.replace(/-/g,""), [h,m]=(time||"18:00").split(":");
+  const st=d+"T"+h+m+"00", en=d+"T"+String(Math.min(+h+1,23)).padStart(2,"0")+m+"00";
+  return "https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(title+" — "+CLINIC.doctor)+"&details="+encodeURIComponent((note||"")+(CLINIC.address?"\n"+CLINIC.address:""))+"&dates="+st+"/"+en+"&ctz=Africa/Cairo";
+}
+
+/* ---------- المواعيد ---------- */
+function openAppt(title,date){ $("aTitle").value=title||""; $("aDate").value=date||ymd(new Date()); $("aNote").value=""; $("apptModal").classList.add("on"); }
+function saveAppt(){
+  const title=$("aTitle").value.trim()||"متابعة", date=$("aDate").value; if(!date){toast("اختار التاريخ");return;}
+  S.appts.push({id:uid(),title,date,time:$("aTime").value,note:$("aNote").value.trim()});
+  S.appts.sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
+  save(); closeM("apptModal"); render(); toast("الموعد اتسجل ✓");
+}
+function delAppt(id){ if(confirmDel(id)){ S.appts=S.appts.filter(x=>x.id!==id); save(); render(); } }
+
+/* ---------- المية ---------- */
+function water(d){
+  const t=ymd(new Date());
+  S.water[t]=Math.max(0,Math.min(40,(S.water[t]||0)+d));
+  save(); renderWater();
+  if(d>0 && S.water[t]===waterGoal()) toast("وصلت لهدف المية النهارده 💧👏");
+}
+function renderWater(){
+  const n=S.water[ymd(new Date())]||0, g=waterGoal();
+  $("wCount").innerHTML=n+"<small>من "+g+" كوباية</small>";
+  $("wBar").style.width=Math.min(100,n/g*100)+"%";
+  $("wInfo").textContent=(n>=g?"👏 وصلت للهدف — ":"")+"حوالي "+(Math.round(n*25)/100)+" لتر (الكوباية = ربع لتر)";
+  $("wRemind").checked=!!(S.profile&&S.profile.waterRemind);
+}
+$("wRemind").onchange=()=>{ if(!S.profile) return; S.profile.waterRemind=$("wRemind").checked; save(); if(S.profile.waterRemind){ toast("هفكّرك تشرب كل ساعتين من 10 الصبح لـ 10 بالليل 💧"); ensureNotifPermission(true); } };
+const WATER_HOURS=[10,12,14,16,18,20,22];
+
+/* ---------- يوميات التبول ---------- */
+const SYM={burn:"حرقان",blood:"دم",urg:"إلحاح",weak:"ضعف التيار",leak:"تسريب"};
+const SYM_IDS={burn:"sBurn",blood:"sBlood",urg:"sUrg",weak:"sWeak",leak:"sLeak"};
+const isNight=ts=>new Date(ts).getHours()<6;   // من 12 بالليل لـ 6 الصبح
+function logVoid(){
+  const s=Object.keys(SYM_IDS).filter(k=>$(SYM_IDS[k]).checked);
+  S.voids.push({t:Date.now(), s});
+  const cutoff=Date.now()-60*DAY; S.voids=S.voids.filter(v=>v.t>=cutoff).slice(-1500);
+  Object.values(SYM_IDS).forEach(id=>$(id).checked=false);
+  if(navigator.vibrate) navigator.vibrate(30);
+  save(); renderVoid(); toast("اتسجلت ✓");
+}
+function undoVoid(){ if(!S.voids.length) return; if(confirmDel("void")){ S.voids.pop(); save(); renderVoid(); } }
+function voidStats(d){
+  const L=S.voids.filter(v=>ymd(new Date(v.t))===d), c={n:L.length, night:L.filter(v=>isNight(v.t)).length};
+  Object.keys(SYM).forEach(k=>c[k]=L.filter(v=>(v.s||[]).includes(k)).length);
+  return c;
+}
+function symText(c){ return Object.keys(SYM).filter(k=>c[k]).map(k=>SYM[k]+(c[k]>1?" ×"+c[k]:"")).join("، ")||"—"; }
+function voidDays(days){ const out=[]; for(let i=0;i<days;i++){ const d=ymd(new Date(today0().getTime()-i*DAY)), c=voidStats(d); if(c.n) out.push([d,c]); } return out; }
+function voidTable(days){
+  const L=voidDays(days); if(!L.length) return "";
+  return "<table><tr><th>اليوم</th><th>المرات</th><th>بالليل</th><th>الأعراض</th></tr>"
+    + L.map(([d,c])=>"<tr><td>"+parseD(d).toLocaleDateString("ar-EG",{weekday:"short",day:"numeric",month:"short"})+"</td><td>"+c.n+"</td><td"+(c.night>=2?' class="hi"':"")+">"+c.night+"</td><td"+(c.blood?' class="hi"':"")+">"+esc(symText(c))+"</td></tr>").join("")+"</table>";
+}
+function renderVoid(){
+  const c=voidStats(ymd(new Date())), last=S.voids[S.voids.length-1];
+  $("voidBtn").innerHTML=c.n+"<small>سجّل مرة</small>";
+  $("voidInfo").textContent = c.n? "النهارده: "+c.n+" مرة"+(c.night?" — منهم "+c.night+" بالليل":"")+" • آخر مرة "+new Date(last.t).toLocaleTimeString("ar-EG",{hour:"numeric",minute:"2-digit"}) : "لسه ما سجلتش النهارده";
+  const blood=S.voids.some(v=>v.t>=Date.now()-DAY && (v.s||[]).includes("blood"));
+  $("voidAlert").innerHTML = blood? '<div class="alert" style="margin-top:8px;text-align:right"><b>🩸 سجّلت دم في البول.</b> ده لازم يتعرض على الدكتور — كلّم العيادة. ولو الدم كتير أو فيه جلطات أو البول وقف: روح الطوارئ على طول.<br><a class="btn btn-warn btn-sm" href="'+telHref(CLINIC.phone)+'" style="margin-top:6px">📞 اتصال بالعيادة</a></div>' : "";
+  $("voidHist").innerHTML=voidTable(7);
+}
+
+/* ---------- الدعامة ---------- */
+function stentHtml(){
+  const st=S.profile&&S.profile.stent; if(!st) return "";
+  const d=parseD(st), left=Math.round((d-today0())/DAY), ds=d.toLocaleDateString("ar-EG",{weekday:"long",day:"numeric",month:"long"});
+  const done='<button class="btn2 btn-sm" onclick="stentDone()">اتشالت ✓</button>';
+  if(left<0) return '<div class="alert urgent" style="margin-bottom:14px"><b>⚠️ ميعاد شيل الدعامة عدّى من '+(-left)+' يوم ('+ds+')</b><div style="font-size:15px;margin-top:4px">الدعامة لو فضلت بعد ميعادها ممكن تعمل مشاكل — كلّم العيادة النهارده.</div><div class="row" style="margin-top:8px"><a class="btn btn-sm btn2" href="'+telHref(CLINIC.phone)+'">📞 اتصال</a>'+done+'</div></div>';
+  return '<div class="card stent"><h2>🔔 ميعاد شيل الدعامة (JJ)</h2><b>'+ds+'</b><div class="muted">'+(left===0?"النهارده!":"فاضل "+left+" يوم")+(left<=7?" — كلّم العيادة واحجز":"")+'</div><div class="row" style="margin-top:8px">'+(left<=7?'<a class="btn btn-sm" href="'+telHref(CLINIC.phone)+'">📞 احجز</a>':'')+done+'</div></div>';
+}
+function stentDone(){ if(confirmDel("stent")){ S.profile.stent=""; save(); render(); toast("حمد الله على السلامة ✓"); } }
+
+/* ---------- نسخة احتياطية ---------- */
+function exportData(){ const b=new Blob([JSON.stringify(S)],{type:"application/json"});
+  if(NATIVE){ blobToB64(b).then(x=>shareFile("dr-karim-backup.json","application/json",x,"نسخة احتياطية — تطبيق د. كريم")); return; } const a=document.createElement("a"); a.href=URL.createObjectURL(b); a.download="dr-karim-backup.json"; a.click(); }
+function importData(inp){ const f=inp.files[0]; if(!f) return; const r=new FileReader(); r.onload=()=>{ try{ const d=JSON.parse(r.result); if(!("meds" in d)) throw 0; S=Object.assign(blank(), d); save(); render(); toast("اتسترجعت البيانات ✓"); }catch(e){ toast("الملف ده مش صحيح"); } }; r.readAsText(f); }
+/* ---------- التنبيهات داخل التطبيق ---------- */
+let swReg=null;
+if("serviceWorker" in navigator && !NATIVE){ navigator.serviceWorker.register("sw.js").then(r=>swReg=r).catch(()=>{}); }
+/* ---------- تنبيهات الأدوية جوه تطبيق الأندرويد (بترن حتى والتطبيق مقفول — زي دوايا) ----------
+   بنحسب كل جرعة في الأيام الجاية ونبعتها للأندرويد يحجزها في المنبّه.
+   كل ما المريض تضيف/تعدّل دوا أو تعلّم ✓ أو تفتح التطبيق، الحجز بيتجدد. */
+const REMIND_DAYS = 10;
+function reminderItems(){
+  const out=[], now=new Date(), P=S.profile||{};
+  for(let i=0;i<REMIND_DAYS;i++){
+    const d=ymd(new Date(today0().getTime()+i*DAY));
+    S.meds.forEach(m=>{
+      if(m.until && d>m.until) return;
+      if(m.added && d<m.added) return;
+      m.times.forEach(tm=>{
+        if((S.taken[d]||{})[m.id+"_"+tm]) return;          // اتاخدت خلاص
+        const at=d+"T"+tm; if(new Date(at)<=now) return;
+        out.push({at, title:"💊 ميعاد "+m.name, body:(m.note? m.note+" — " : "")+"افتح التطبيق ودوس ✓ لما تاخدها"});
+      });
+    });
+    // تذكير المية (لو مفعّل) — النهارده بس لو لسه ما وصلش للهدف
+    if(P.waterRemind && !(i===0 && (S.water[d]||0)>=waterGoal())) WATER_HOURS.forEach(h=>{
+      const at=d+"T"+String(h).padStart(2,"0")+":00"; if(new Date(at)<=now) return;
+      out.push({at, title:"💧 وقت كوباية مية", body:"اشرب كوباية دلوقتي وسجّلها في التطبيق"});
+    });
+  }
+  // ميعاد شيل الدعامة: قبلها بأسبوعين وأسبوع ويومين ويومها
+  if(P.stent) [14,7,2,0].forEach(b=>{
+    const at=ymd(new Date(parseD(P.stent).getTime()-b*DAY))+"T10:00"; if(new Date(at)<=now) return;
+    out.push({at, title:"🔔 ميعاد شيل الدعامة", body: b? "فاضل "+b+" يوم على ميعاد شيل الدعامة — كلّم العيادة واحجز" : "النهارده ميعاد شيل الدعامة — ما تأجلش"});
+  });
+  out.sort((a,b)=>a.at.localeCompare(b.at));
+  if(out.length){  // تذكير قبل ما المواعيد المحجوزة تخلص
+    const last=ymd(new Date(today0().getTime()+(REMIND_DAYS-1)*DAY));
+    out.push({at:last+"T11:00", title:"🔔 افتح تطبيق د. كريم", body:"افتح التطبيق مرة علشان التنبيهات تفضل شغالة"});
+  }
+  return out.slice(0,300);
+}
+let _remT=null;
+function syncReminders(){ if(!NATIVE) return; clearTimeout(_remT); _remT=setTimeout(()=>native("reminders",{items:reminderItems()}),500); }
+async function refreshNotifState(){
+  if(!NATIVE) return;
+  const st=await native("notifStatus",{})||{};
+  $("notifHint").textContent="🔔 تنبيه في ميعاد كل جرعة — بيرن لوحده حتى والتطبيق مقفول. «أضيف للتقويم» اختياري.";
+  $("notifState").innerHTML = st.notif
+    ? '<p style="color:var(--ok);font-weight:700;margin:0 0 8px">✓ التنبيهات شغالة'+(st.exact?'':' (ممكن تتأخر دقايق — فعّل «المنبّهات الدقيقة» من الزرار)')+'</p>'
+    : '<p style="color:var(--warn);font-weight:700;margin:0 0 8px">⚠️ التنبيهات مقفولة — دوس الزرار تحت وفعّليها</p>';
+  $("notifBtn").style.display = (st.notif && st.exact) ? "none" : "";
+  $("notifBtn").textContent = "تفعيل التنبيهات";
+}
+// أول ما يبقى فيه دوا: نطلب الإذن مرة واحدة
+async function ensureNotifPermission(force){
+  if(!NATIVE || S.notifAsked || (!force && !S.meds.length)) return;
+  S.notifAsked=true; try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){}
+  await native("notifPermission",{}); syncReminders(); refreshNotifState();
+}
+document.addEventListener("visibilitychange",()=>{ if(!document.hidden){ syncReminders(); refreshNotifState(); } });
+
+function askNotif(){
+  if(NATIVE){ native("notifPermission",{}).then(r=>{ toast(r&&r.notif?"التنبيهات اتفعلت ✓":"التنبيهات لسه مقفولة — فعّلها من إعدادات الموبايل"); syncReminders(); refreshNotifState(); }); return; }
+  if(!("Notification" in window)){ toast("علشان التنبيه يرن في ميعاده، دوس «أضيف للتقويم» جنب كل دوا"); return; }
+  Notification.requestPermission().then(p=>toast(p==="granted"?"التنبيهات اتفعلت ✓":"التنبيهات مقفولة من الإعدادات"));
+}
+function notify(title,body){
+  try{
+    if(Notification.permission!=="granted") return;
+    if(swReg) swReg.showNotification(title,{body,icon:"icon-192.png",badge:"icon-192.png",dir:"rtl",lang:"ar",vibrate:[200,100,200]});
+    else new Notification(title,{body});
+  }catch(e){}
+}
+let lastFired={};
+setInterval(()=>{
+  const now=new Date(), hm=String(now.getHours()).padStart(2,"0")+":"+String(now.getMinutes()).padStart(2,"0"), t=ymd(now);
+  S.meds.filter(m=>!m.until||m.until>=t).forEach(m=>m.times.forEach(tm=>{ const k=t+m.id+tm; if(tm===hm && !lastFired[k] && !(S.taken[t]||{})[m.id+"_"+tm]){ lastFired[k]=1; notify("💊 ميعاد "+m.name, m.note||"ما تنساش جرعتك"); toast("💊 ميعاد "+m.name); } }));
+  // تذكير المية في نسخة الويب (جوه الأندرويد بيتحجز في المنبّه)
+  if(!NATIVE && S.profile && S.profile.waterRemind && now.getMinutes()===0 && WATER_HOURS.includes(now.getHours()) && (S.water[t]||0)<waterGoal()){ const k=t+"w"+now.getHours(); if(!lastFired[k]){ lastFired[k]=1; notify("💧 وقت كوباية مية","اشرب كوباية وسجّلها في التطبيق"); toast("💧 وقت كوباية مية"); } }
+},20000);
+
+
+/* =========================================================
+   📷 قراءة الروشتة (Gemini عن طريق خدمة Cloudflare)
+   ========================================================= */
+let rxKind="prescription", rxMeds=[];
+function serviceOn(){ return !!(CLINIC.reader && CLINIC.token); }
+function pickRx(kind){
+  if(!serviceOn()){ rxMessage("خدمة قراءة الروشتة مش متفعلة لسه.","ضيف الأدوية يدوي من زرار «+ إضافة»."); return; }
+  rxKind=kind; $("rxFile").click();
+}
+$("rxFile").onchange = async e => {
+  const f=e.target.files[0]; e.target.value=""; if(!f) return;
+  $("rxBody").innerHTML='<div class="spin"></div><p class="center">بنقرا '+(rxKind==="box"?"العلبة":"الروشتة")+'… ممكن ياخد لحد دقيقة</p>';
+  $("rxModal").classList.add("on");
+  let img;
+  try{ img=await shrinkImage(f, 1600); }
+  catch(err){ rxMessage("مش قادرين نفتح الصورة دي.","جرب تصوّر تاني بالكاميرا أو اختار صورة JPG."); return; }
+  try{
+    const res=await postJSON(CLINIC.reader+"/api/read-prescription",{"x-app-token":CLINIC.token},{image:img, mimeType:"image/jpeg", kind:rxKind},60000);
+    const data=res.data||{};
+    if(!res.ok){ rxMessage(data.error||"خدمة القراءة مش متاحة دلوقتي.","جرب كمان شوية، أو ضيف الأدوية يدوي."); return; }
+    rxMeds=(data.medicines||[]);
+    if(!rxMeds.length){ rxMessage("ما قدرناش نقرا أدوية من الصورة.","جرب صورة أوضح في نور كويس، أو ضيف الأدوية يدوي."); return; }
+    renderRx();
+  }catch(err){
+    rxMessage(err.name==="AbortError"?"الخدمة اتأخرت قوي في الرد.":"الخدمة مش متاحة دلوقتي.","اتأكد إن النت شغال وجرب تاني، أو ضيف الأدوية يدوي.");
+  }
+};
+function rxMessage(title,hint){
+  $("rxBody").innerHTML='<div class="alert"><b>'+esc(title)+'</b><br>'+esc(hint)+'</div><br><div class="row"><button style="flex:1" onclick="closeM(\'rxModal\');openMed()">+ إضافة يدوي</button><button class="btn2" onclick="closeM(\'rxModal\')">إغلاق</button></div>';
+  $("rxModal").classList.add("on");
+}
+// تصغير الصورة في المتصفح: أقصى ضلع maxSide، JPEG ← base64 من غير البادئة
+function shrinkImage(file,maxSide){
+  return new Promise((ok,fail)=>{
+    const url=URL.createObjectURL(file), im=new Image();
+    im.onload=()=>{
+      const sc=Math.min(1,maxSide/Math.max(im.naturalWidth,im.naturalHeight));
+      const w=Math.max(1,Math.round(im.naturalWidth*sc)), h=Math.max(1,Math.round(im.naturalHeight*sc));
+      const c=document.createElement("canvas"); c.width=w; c.height=h;
+      const g=c.getContext("2d"); g.fillStyle="#fff"; g.fillRect(0,0,w,h); g.drawImage(im,0,0,w,h);
+      URL.revokeObjectURL(url);
+      ok(c.toDataURL("image/jpeg",0.85).split(",")[1]);
+    };
+    im.onerror=()=>{ URL.revokeObjectURL(url); fail(new Error("img")); };
+    im.src=url;
+  });
+}
+const SUGGEST={1:["09:00"],2:["09:00","21:00"],3:["08:00","14:00","20:00"],4:["06:00","12:00","18:00","00:00"]};
+const FOOD={before:"قبل الأكل",after:"بعد الأكل",with:"مع الأكل",any:""};
+function renderRx(){
+  const u=(m,f)=>(m.uncertain||[]).includes(f)?" unc":"";
+  $("rxBody").innerHTML='<p class="muted" style="margin-top:0">راجع كل دوا على الروشتة الأصلية. الخانات <span class="legend">الملوّنة بالأصفر</span> الخدمة مش متأكدة منها — اتأكد منها كويس. شيل علامة ✓ من أي دوا مش عايز تضيفه.</p>'
+   + rxMeds.map((m,i)=>{
+      const times=SUGGEST[m.timesPerDay]||["09:00"];
+      const tUnc=!SUGGEST[m.timesPerDay]||(m.uncertain||[]).includes("timesPerDay");
+      return '<div class="rx" id="rx'+i+'">'
+       +'<label class="rxh"><input type="checkbox" checked onchange="$(\'rx'+i+'\').classList.toggle(\'off\',!this.checked)"><b>دوا '+(i+1)+'</b></label>'
+       +'<label>اسم الدوا</label><input class="f-name'+u(m,"name")+'" value="'+esc(m.name)+'">'
+       +'<div class="two"><div><label>التركيز</label><input class="f-strength'+u(m,"strength")+'" value="'+esc(m.strength)+'"></div>'
+       +'<div><label>الجرعة</label><input class="f-dose'+u(m,"dose")+'" value="'+esc(m.dose)+'"></div></div>'
+       +'<div class="two"><div><label>مع الأكل</label><select class="f-food'+u(m,"foodRelation")+'">'
+         +Object.keys(FOOD).map(k=>'<option value="'+k+'"'+(m.foodRelation===k?" selected":"")+'>'+(FOOD[k]||"مش مهم")+'</option>').join("")+'</select></div>'
+       +'<div><label>المدة (أيام)</label><input type="number" inputmode="numeric" class="f-days'+u(m,"durationDays")+'" value="'+(m.durationDays||"")+'" placeholder="مستمر"></div></div>'
+       +'<label>ملاحظات</label><input class="f-notes" value="'+esc(m.notes)+'">'
+       +'<label>المواعيد'+(m.timesPerDay?' ('+m.timesPerDay+' مرات في اليوم)':' — مش مكتوب عدد المرات، حدده')+'</label>'
+       +'<div class="f-times">'+times.map(t=>timeRow(t,tUnc)).join("")+'</div>'
+       +'<button class="btn2 btn-sm" onclick="this.previousElementSibling.insertAdjacentHTML(\'beforeend\',timeRow(\'21:00\',false))">+ ميعاد</button>'
+       +'</div>';
+    }).join("")
+   +'<div class="row" style="position:sticky;bottom:0;background:#fff;padding:8px 0"><button class="btn-ok" style="flex:1" onclick="saveRx()">حفظ الأدوية المختارة</button><button class="btn2" onclick="closeM(\'rxModal\')">إلغاء</button></div>';
+}
+function timeRow(t,unc){ return '<div class="row" style="margin-bottom:6px"><input type="time" value="'+t+'" style="flex:1"'+(unc?' class="unc"':'')+'><button class="btn2 btn-sm" onclick="this.parentNode.remove()">✕</button></div>'; }
+function saveRx(){
+  let n=0, missing=false;
+  rxMeds.forEach((_,i)=>{
+    const box=$("rx"+i); if(!box.querySelector(".rxh input").checked) return;
+    const v=c=>box.querySelector(c).value.trim();
+    const name=v(".f-name"); if(!name){ missing=true; return; }
+    const times=[...box.querySelectorAll(".f-times input")].map(x=>x.value).filter(Boolean).sort();
+    if(!times.length){ missing=true; return; }
+    const days=parseInt(v(".f-days"),10);
+    const note=[v(".f-strength"), v(".f-dose"), FOOD[box.querySelector(".f-food").value], days>0?"لمدة "+days+" يوم":"", v(".f-notes")].filter(Boolean).join(" • ");
+    S.meds.push({id:uid(),name,note,times,added:ymd(new Date()),...(days>0?{until:ymd(new Date(today0().getTime()+(days-1)*DAY))}:{})});
+    n++;
+  });
+  if(missing){ toast("فيه دوا من غير اسم أو من غير ميعاد"); return; }
+  if(!n){ toast("اختار دوا واحد على الأقل"); return; }
+  save(); closeM("rxModal"); render(); toast("اتضاف "+n+" دوا ✓"); ensureNotifPermission();
+}
+
+/* =========================================================
+   📊 قياساتي وتحاليلي: الضغط والحرارة والسكر والكرياتينين و PSA
+   ========================================================= */
+function bpLevel(v){ if(!v||!v.sys) return 0; if(v.sys>=180||v.dia>=120) return 2; if(v.sys>=140||v.dia>=90) return 1; return 0; }
+function feverLevel(v){ if(!v||!v.temp) return 0; return v.temp>=38.5?2 : v.temp>=38?1 : 0; }
+function recentVitals(){ return sortedVitals().filter(v=>(today0()-parseD(v.date))/DAY<=3); }
+function vitalAlertHtml(){
+  const R=recentVitals(), bp=R.find(v=>v.sys), tp=R.find(v=>v.temp);
+  let h="";
+  if(bp && bpLevel(bp)){
+    const lv=bpLevel(bp);
+    h+='<div class="alert'+(lv===2?" urgent":"")+'" style="margin-bottom:14px"><b>'+(lv===2? "🚨 الضغط "+bp.sys+"/"+bp.dia+" عالي جدًا — كلّم دكتور أو روح الطوارئ."
+      : "⚠️ الضغط "+bp.sys+"/"+bp.dia+" أعلى من الطبيعي. ارتاح ربع ساعة وقيسه تاني، ولو فضل عالي كلّم دكتورك.")+'</b></div>';
+  }
+  if(tp && feverLevel(tp)){
+    const lv=feverLevel(tp);
+    h+='<div class="alert'+(lv===2?" urgent":"")+'" style="margin-bottom:14px"><b>🌡️ الحرارة '+tp.temp+'° — '+(lv===2?"دي سخونية عالية.":"فيه سخونية.")+'</b>'
+      +'<div style="font-size:15px;margin-top:4px">السخونية مع وجع الجنب أو رعشة، أو بعد عملية أو مع دعامة أو قسطرة — محتاج كشف سريع. كلّم العيادة، ولو العيادة مقفولة روح الطوارئ.</div>'
+      +'<a class="btn btn-sm '+(lv===2?"btn2":"btn-warn")+'" href="'+telHref(CLINIC.phone)+'" style="margin-top:8px">📞 اتصال بالعيادة</a></div>';
+  }
+  return h;
+}
+function saveVital(){
+  const num=id=>{ const x=parseFloat($(id).value); return Number.isFinite(x)?x:null; };
+  const sys=num("vSys"), dia=num("vDia"), temp=num("vTemp"), sug=num("vSug"), cr=num("vCr"), psa=num("vPsa"), date=$("vDate").value||ymd(new Date());
+  if([sys,dia,temp,sug,cr,psa].every(x=>x===null)){ toast("اكتب قياس واحد على الأقل"); return; }
+  if((sys===null)!==(dia===null)){ toast("اكتب رقمين الضغط: العالي والواطي"); return; }
+  if(sys!==null && (sys<60||sys>260||dia<30||dia>160||dia>=sys)){ toast("أرقام الضغط مش مظبوطة، راجعها"); return; }
+  if(temp!==null && (temp<34||temp>43)){ toast("الحرارة مش مظبوطة، راجعها"); return; }
+  if(sug!==null && (sug<20||sug>600)){ toast("رقم السكر مش مظبوط، راجعه"); return; }
+  if(cr!==null && (cr<0.1||cr>20)){ toast("رقم الكرياتينين مش مظبوط، راجعه"); return; }
+  if(psa!==null && (psa<0||psa>5000)){ toast("رقم PSA مش مظبوط، راجعه"); return; }
+  const v={id:uid(),date,ts:new Date().toTimeString().slice(0,5)};
+  if(sys!==null){ v.sys=Math.round(sys); v.dia=Math.round(dia); }
+  if(temp!==null) v.temp=Math.round(temp*10)/10;
+  if(sug!==null) v.sug=Math.round(sug);
+  if(cr!==null) v.cr=Math.round(cr*100)/100;
+  if(psa!==null) v.psa=Math.round(psa*100)/100;
+  S.vitals.push(v); save();
+  ["vSys","vDia","vTemp","vSug","vCr","vPsa"].forEach(id=>$(id).value="");
+  render(); toast(bpLevel(v)||feverLevel(v)?"اتسجل — راجع التنبيه ⚠️":"اتسجل ✓");
+}
+function delVital(id){ if(confirmDel(id)){ S.vitals=S.vitals.filter(x=>x.id!==id); save(); render(); } }
+// العواميد اللي فيها بيانات بس
+const VCOLS=[
+  ["sys","الضغط",v=>v.sys+"/"+v.dia, v=>bpLevel(v)>0],
+  ["temp","الحرارة",v=>v.temp+"°", v=>feverLevel(v)>0],
+  ["sug","السكر",v=>v.sug, v=>v.sug>=200],
+  ["cr","الكرياتينين",v=>v.cr, v=>v.cr>1.3],
+  ["psa","PSA",v=>v.psa, v=>v.psa>4]
+];
+function vitalRows(list, withDel){
+  const cols=VCOLS.filter(c=>list.some(v=>v[c[0]]!=null));
+  return "<table><tr><th>اليوم</th>"+cols.map(c=>"<th>"+c[1]+"</th>").join("")+(withDel?"<th></th>":"")+"</tr>"
+   + list.map(v=>"<tr><td>"+parseD(v.date).toLocaleDateString("ar-EG",{day:"numeric",month:"short"})+"</td>"
+     + cols.map(c=>v[c[0]]==null? "<td>—</td>" : "<td"+(c[3](v)?' class="hi"':"")+"><bdi>"+esc(c[2](v))+"</bdi></td>").join("")
+     +(withDel?'<td><button class="btn2 btn-sm" onclick="delVital(\''+v.id+'\')">✕</button></td>':"")+"</tr>").join("")+"</table>";
+}
+function sortedVitals(){ return S.vitals.slice().sort((a,b)=>(b.date+b.ts).localeCompare(a.date+a.ts)); }
+function renderVitals(){
+  if(!$("vDate").value) $("vDate").value=ymd(new Date());
+  const L=sortedVitals();
+  $("vHist").innerHTML = L.length? vitalRows(L.slice(0,10),true) : "";
+  $("vAlert").innerHTML = vitalAlertHtml();
+}
+
+/* =========================================================
+   📄 تقرير PDF للدكتور (html2canvas + jsPDF عند الطلب)
+   ========================================================= */
+const LIBS=[
+  "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js",
+  "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+];
+const _scripts={};
+function loadScript(src){
+  return _scripts[src] ||= new Promise((ok,fail)=>{
+    const el=document.createElement("script"); el.src=src; el.onload=ok;
+    el.onerror=()=>{ delete _scripts[src]; el.remove(); fail(new Error("load")); };
+    document.head.appendChild(el);
+  });
+}
+$("drQs").oninput=()=>{ S.questions=$("drQs").value; save(); };
+
+// نسبة الالتزام بالدوا في آخر 7 أيام (بنحسب بس الجرعات اللي ميعادها عدّى)
+function adherence(m){
+  const now=new Date(), hm=now.toTimeString().slice(0,5);
+  let due=0, done=0;
+  for(let i=0;i<7;i++){
+    const day=ymd(new Date(today0().getTime()-i*DAY));
+    if(m.added && day<m.added) continue;
+    if(m.until && day>m.until) continue;
+    m.times.forEach(tm=>{ if(i===0 && tm>hm) return; due++; if((S.taken[day]||{})[m.id+"_"+tm]) done++; });
+  }
+  return due? {pct:Math.round(done/due*100), done, due} : null;
+}
+function buildReport(){
+  const P=S.profile||{}, t=ymd(new Date());
+  const row=(cells,tag)=>"<tr>"+cells.map(c=>"<"+(tag||"td")+">"+c+"</"+(tag||"td")+">").join("")+"</tr>";
+  const none=txt=>'<p class="none">'+txt+'</p>';
+  const dShort=s=>parseD(s).toLocaleDateString("ar-EG",{day:"numeric",month:"short",year:"numeric"});
+  let h='<div class="rh"><img src="logo-full.png"><div><h1>'+esc(CLINIC.doctor)+'</h1><div class="sub">'+esc(CLINIC.title)+'</div><div class="sub">📞 '+esc(CLINIC.phone)+(CLINIC.phone2?' — '+esc(CLINIC.phone2):'')+'</div></div>'
+    +'<div class="rt"><b>تقرير متابعة</b>'+new Date().toLocaleDateString("ar-EG",{day:"numeric",month:"long",year:"numeric"})+'</div></div>';
+  // بيانات المريض
+  h+='<div class="blk"><h2>👤 بيانات المريض</h2><div class="grid">'
+    +'<div><small>الاسم</small><b>'+esc(P.name||"—")+'</b></div>'
+    +'<div><small>السن</small><b>'+(P.age? P.age+" سنة":"—")+'</b></div>'
+    +'<div><small>سبب المتابعة</small><b>'+esc(condName(P.cond)||"—")+'</b></div>'
+    +'<div><small>'+(P.stent?"ميعاد شيل الدعامة":"تاريخ العملية")+'</small><b>'+(P.stent? dShort(P.stent) : P.op? dShort(P.op) : "—")+'</b></div>'
+    +'</div>'+(P.stent&&P.op? '<p class="none">تاريخ العملية: '+dShort(P.op)+'</p>':'')+'</div>';
+  // الأدوية
+  h+='<div class="blk"><h2>💊 الأدوية والالتزام (آخر 7 أيام)</h2>';
+  const meds=S.meds.filter(m=>!m.until||m.until>=ymd(new Date(today0().getTime()-6*DAY)));
+  h+= meds.length? '<table>'+row(["الدوا","الجرعة / التعليمات","المواعيد","الالتزام"],"th")
+    + meds.map(m=>{ const a=adherence(m); return row([ "<b><bdi>"+esc(m.name)+"</bdi></b>", m.note?noteHtml(m.note):"—", m.times.map(fmtT).join("، "),
+        a? '<b'+(a.pct<70?' style="color:#c0392b"':'')+'>'+a.pct+'%</b> <small>('+a.done+'/'+a.due+')</small>' : "—" ]); }).join("")+'</table>'
+    : none("مفيش أدوية متسجلة.");
+  h+='</div>';
+  // يوميات التبول
+  const VD=voidDays(7);
+  h+='<div class="blk"><h2>🚻 يوميات التبول (آخر 7 أيام)</h2>';
+  if(VD.length){
+    const avg=k=>(VD.reduce((s,[,c])=>s+c[k],0)/VD.length).toFixed(1).replace(/\.0$/,"");
+    h+='<p class="none">متوسط '+avg("n")+' مرة في اليوم، منهم '+avg("night")+' بالليل (من 12 لـ 6 الصبح) — على '+VD.length+' يوم متسجل.</p>'+voidTable(7);
+  } else h+=none("مفيش يوميات متسجلة.");
+  h+='</div>';
+  // المية
+  const W=[]; for(let i=0;i<7;i++){ const d=ymd(new Date(today0().getTime()-i*DAY)); if(S.water[d]) W.push([d,S.water[d]]); }
+  h+='<div class="blk"><h2>💧 شرب المية (الهدف '+waterGoal()+' كوباية)</h2>'+(W.length? '<table>'+row(["اليوم","الكوبايات","تقريبًا"],"th")
+    + W.map(([d,n])=>row([parseD(d).toLocaleDateString("ar-EG",{weekday:"short",day:"numeric",month:"short"}), (n<waterGoal()?'<b style="color:#c0392b">'+n+'</b>':n), (Math.round(n*25)/100)+" لتر"])).join("")+'</table>'
+    : none("مفيش شرب مية متسجل."))+'</div>';
+  // القياسات
+  const V=sortedVitals().slice(0,8);
+  h+='<div class="blk"><h2>📊 القياسات والتحاليل</h2>'+(V.length? vitalRows(V,false) : none("مفيش قياسات متسجلة."))+'</div>';
+  // المواعيد الجاية
+  const up=S.appts.filter(a=>a.date>=t).slice(0,5);
+  h+='<div class="blk"><h2>📅 المواعيد الجاية</h2>'+(up.length? '<table>'+row(["الموعد","التاريخ","الساعة"],"th")+up.map(a=>row([esc(a.title)+(a.note?" — "+esc(a.note):""), fmtD(parseD(a.date)), fmtT(a.time)])).join("")+'</table>' : none("مفيش مواعيد متسجلة."))+'</div>';
+  // أسئلة للدكتور
+  h+='<div class="blk"><h2>❓ أسئلة للدكتور</h2><div class="qs">'+(esc((S.questions||"").trim())||'<span class="none">مفيش أسئلة.</span>')+'</div></div>';
+  h+='<div class="foot">البيانات دي سجّلها المريض بنفسه في تطبيق '+esc(CLINIC.doctor)+' — مش بديل عن الكشف والتحاليل</div>';
+  $("report").innerHTML=h;
+}
+let _busy=false;
+async function makeReport(){
+  if(_busy) return;
+  if(!S.profile){ toast("سجّل بياناتك في الرئيسية الأول"); return; }
+  S.questions=$("drQs").value; save();
+  _busy=true; const btn=$("repBtn"), old=btn.textContent; btn.textContent="⏳ بنجهّز التقرير…"; btn.disabled=true;
+  try{
+    try{ await Promise.all(LIBS.map(loadScript)); }
+    catch(e){ toast("محتاج نت علشان نعمل التقرير — اتأكد من النت وجرب تاني"); return; }
+    buildReport();
+    const el=$("report");
+    await Promise.all([...el.querySelectorAll("img")].map(i=>i.complete?0:new Promise(r=>{i.onload=i.onerror=r;})));
+    if(document.fonts&&document.fonts.ready) await document.fonts.ready;
+    const scale=2, canvas=await html2canvas(el,{scale,backgroundColor:"#ffffff",useCORS:true,logging:false,windowWidth:794});
+    // تقسيم الصفحات من غير ما نقطع سطر في النص
+    const pageH=Math.floor(canvas.width*297/210), top0=el.getBoundingClientRect().top;
+    const topOf=n=>Math.round((n.getBoundingClientRect().top-top0)*scale);
+    const blkCuts=[...el.querySelectorAll(".blk,.foot")].map(topOf).sort((a,b)=>a-b);   // أول قسم كامل
+    const cuts=[...el.querySelectorAll(".blk,tr,h2,.qs,.foot")].map(topOf).sort((a,b)=>a-b);
+    const {jsPDF}=window.jspdf, pdf=new jsPDF({unit:"mm",format:"a4",orientation:"p"});
+    let y=0, page=0;
+    const topMm=12, topPx=Math.round(canvas.width*topMm/210);   // هامش فوق في الصفحات بعد الأولى
+    while(y<canvas.height-4){
+      const room = page ? pageH-topPx : pageH;
+      let end=y+room;
+      // نقطع قبل قسم كامل لو ينفع (من غير ما نسيب أكتر من 35% فاضي)، وإلا بين سطرين
+      if(end<canvas.height){ const c=blkCuts.filter(v=>v>y+room*0.65 && v<=end).pop() || cuts.filter(v=>v>y+room*0.4 && v<=end).pop(); if(c) end=c; }
+      end=Math.min(end,canvas.height);
+      const part=document.createElement("canvas"); part.width=canvas.width; part.height=end-y;
+      const g=part.getContext("2d"); g.fillStyle="#fff"; g.fillRect(0,0,part.width,part.height); g.drawImage(canvas,0,-y);
+      if(page) pdf.addPage();
+      pdf.addImage(part.toDataURL("image/jpeg",0.92),"JPEG",0,page?topMm:0,210,(end-y)*210/canvas.width);
+      y=end; page++;
+    }
+    if(page>1) for(let i=1;i<=page;i++){ pdf.setPage(i); pdf.setFontSize(9); pdf.setTextColor(150); pdf.text(i+" / "+page,105,292,{align:"center"}); }
+    const fname="report-"+ymd(new Date())+".pdf";
+    const blob=pdf.output("blob");
+    if(NATIVE){ await shareFile(fname,"application/pdf",await blobToB64(blob),"تقرير متابعة — "+(S.profile.name||"")); return; }
+    const file=new File([blob],fname,{type:"application/pdf"});
+    if(navigator.canShare && navigator.canShare({files:[file]})){
+      try{ await navigator.share({files:[file], title:"تقرير متابعة", text:"تقرير متابعة — "+(S.profile.name||"")}); }
+      catch(e){ if(e.name!=="AbortError") downloadAndWa(file); }
+    } else downloadAndWa(file);
+  }catch(e){
+    console.error(e); toast("حصلت مشكلة في عمل التقرير، جرب تاني");
+  }finally{ _busy=false; btn.textContent=old; btn.disabled=false; $("report").innerHTML=""; }
+}
+function downloadAndWa(file){
+  const a=document.createElement("a"); a.href=URL.createObjectURL(file); a.download=file.name; document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),60000);
+  toast("التقرير اتنزل ✓ — تقدر تبعته للدكتور أو توريه له في الكشف");
+}
+
+/* =========================================================
+   💬 بوت «اسأل د. كريم»
+   الإجابات دايمًا من faq.js — الخدمة (لو موجودة) بتختار رقم السؤال بس.
+   ========================================================= */
+let FAQS=window.FAQ||[], CATS=window.FAQ_CATS||[];
+function fill(a){
+  return String(a).replace(/\{(doctor|phone|phone2|address|hours|title|fee|booking)\}/g,(_,k)=>!CLINIC[k]?"":k==="address"?"📍 "+CLINIC.address:CLINIC[k])
+    .split("\n").map(x=>x.trim()).filter(Boolean).join("\n");
+}
+function norm(s){
+  return String(s||"").toLowerCase()
+    .replace(/[ً-ْٰـ]/g,"").replace(/[أإآٱ]/g,"ا").replace(/ة/g,"ه").replace(/ى/g,"ي")
+    .replace(/ؤ/g,"و").replace(/ئ/g,"ي").replace(/[٠-٩]/g,d=>"٠١٢٣٤٥٦٧٨٩".indexOf(d))
+    .replace(/[^ء-يa-z0-9\s]/g," ").replace(/\s+/g," ").trim();
+}
+const STOP=new Set("انا انتي انت عندي عندى في فى من على علي عن هو هي ده دي دا ايه ازاي ازاى ينفع اعمل اعملها ليه امتي هل لو مع ما مش بس يا دكتور دكتوره د كريم عبد العزيز كده اللي الي كان بقي بقيت ممكن عايزه عاوزه عايز عاوز حاجه حاجات اوي قوي جدا ولا او و ف ب ل شويه طب طيب بتاعي بتاعتي بيبقي يعني اني انه انها ايوه لا كام هو".split(" "));
+function variants(w){
+  const v=new Set([w]);
+  for(const pre of ["وال","بال","فال","كال","لل","ال"]) if(w.startsWith(pre)&&w.length-pre.length>=2) v.add(w.slice(pre.length));
+  if(/^[وبف]/.test(w)&&w.length>3) v.add(w.slice(1));
+  return [...v];
+}
+function toks(s){ return norm(s).split(" ").filter(w=>w.length>=2&&!STOP.has(w)); }
+let IDX=[], DF={};
+function buildIndex(){
+  IDX=FAQS.map(f=>{ const kw=new Set(), qw=new Set(); toks(f.k).forEach(w=>variants(w).forEach(x=>kw.add(x))); toks(f.q).forEach(w=>variants(w).forEach(x=>qw.add(x))); return {f,kw,qw,all:[...kw,...qw]}; });
+  DF={}; IDX.forEach(it=>new Set(it.all).forEach(w=>DF[w]=(DF[w]||0)+1));
+}
+buildIndex();
+// الكلمة النادرة (زي «حموضة») أهم من الكلمة المتكررة في أسئلة كتير (زي «بالليل»)
+function rarity(vs){ const d=Math.max(1,...vs.map(x=>DF[x]||0)); return 1/Math.sqrt(d); }
+function search(text){
+  const qt=toks(text); if(!qt.length) return [];
+  return IDX.map(it=>{
+    let sc=0, hit=0;
+    qt.forEach(w=>{
+      const vs=variants(w); let best=0;
+      const inK=vs.some(x=>it.kw.has(x)), inQ=vs.some(x=>it.qw.has(x));
+      if(inK) best=inQ?4:3; else if(inQ) best=2;
+      else if(w.length>=3 && it.all.some(x=>x.length>=3 && (x.startsWith(w)||w.startsWith(x)))) best=1.2;
+      if(best){ sc+=best*rarity(vs); hit++; }
+    });
+    return {f:it.f, sc, cov:hit/qt.length};
+  }).filter(x=>x.sc>0.3).sort((a,b)=>b.sc-a.sc||b.cov-a.cov);
+}
+// علامات الخطر — بتتشاف محليًا قبل أي حاجة (النص بيتوحّد الأول: أ←ا ، ة←ه ، ى←ي)
+const DANGER=[
+  // احتباس البول
+  /احتباس|(مش|ما|مبقتش|مابقتش) ?(قادر|قادره|عارف|عارفه|بقدر|بعرف|بعرفش|بقدرش) (اعمل|اتبول|ابول|انزل|اخرج|ادخل الحمام)|البول (وقف|محبوس|مش (بينزل|نازل)|مبينزلش|مابينزلش|ما بينزلش)|مبعرفش اتبول|مش بتبول|ما بتبولش|(بقالي|من) [^ ]+ (ساعه|ساعات|يوم) (مش|ما) ?(بتبول|عملت حمام)/,
+  // جلطات / دم كتير
+  /(جلط|جلطه|جلطات|كتل|تجلطات) (دم|دمويه)|دم (كتير|غزير|تقيل|جامد) (في|مع) (البول|التبول)|البول (كله دم|دم صافي|احمر غامق)|بتبول دم (كتير|صافي)|بنزف (كتير|جامد)/,
+  // سخونية عالية / رعشة
+  /(سخونيه|حراره|حمي) (عاليه|جامده|شديده|نار|مش بتنزل)|(حرارتي|الحراره|سخونيه|درجه الحراره) (39|40|41|38 5|38 ونص|38 و نص)|رعشه (و|مع|جامده)|قشعريره|بترعش (من )?(السخونيه|البرد)/,
+  // وجع مفاجئ في الخصية
+  /^(?=.*(الخصيه|الخصيتين|البيضه|كيس الصفن))(?=.*(فجاه|مفاجي|شديد|جامد|فظيع|مش مستحمل|ورم|وارم|التف|التواء|اتلوت))/,
+  // قسطرة
+  /(القسطره|القسطر|الكانيولا|السونده|الصونده|القسطاره) (اتسدت|مسدوده|اتقفلت|مش (بتنزل|شغاله|بينزل)|مبتنزلش|وقفت|وقعت|اتشالت|طلعت لوحدها)|(كيس البول|الكيس) (فاضي|مش بيتملي|مبيتملاش)/,
+  // انتصاب مستمر مؤلم / كسر
+  /انتصاب (مستمر|بيوجع|مؤلم|مش بيروح|مبيروحش|من (ساعات|اكتر من))|كسر (في )?(القضيب|العضو)|(القضيب|العضو) (اتكسر|ورم فجاه)/,
+  // إغماء / تشنجات
+  /اغمي|اغماء|اغم(ي|ا) عليا|فقدت الوعي|وقعت من طولي|فرفرت|تشنجات|اتشنجت|بتشنج/,
+  // ألم شديد / مغص كلوي مش بيهدى
+  /(الم|وجع|مغص|تقلصات) (شديد|شديده|جامد|فظيع|مش مستحمل|مش قادر استحمله|رهيب|جامد جدا|مش بيهدي|مبيهداش)/,
+  // ترجيع مستمر
+  /(ترجيع|قيء|برجع) (مستمر|علي طول|كتير|مش بيقف)|مش قادر (اشرب|اكل) (اي حاجه|خالص|مايه|ميه)/,
+  /انتحر|اموت نفسي|اذي نفسي|عايز اموت|عايزه اموت/
+];
+
+function isDanger(text){ const n=norm(text); return DANGER.some(r=>r.test(n)); }
+let chatInit=false, asking=false;
+function askMode(m){
+  $("segChat").classList.toggle("on",m==="chat"); $("segBrowse").classList.toggle("on",m==="browse");
+  $("askChat").style.display=m==="chat"?"block":"none"; $("askBrowse").style.display=m==="browse"?"block":"none";
+  if(m==="browse") renderFaqList();
+}
+function avatar(){ return '<img class="av av-s" src="logo.png" alt="">'; }
+function botSay(html,cls){ $("chatLog").insertAdjacentHTML("beforeend",'<div class="msg">'+avatar()+'<div class="bub'+(cls?" "+cls:"")+'">'+html+'</div></div>'); scrollChat(); }
+function meSay(text){ $("chatLog").insertAdjacentHTML("beforeend",'<div class="msg me"><div class="bub">'+esc(text)+'</div></div>'); scrollChat(); }
+function scrollChat(){ const l=$("chatLog").lastElementChild; if(l) l.scrollIntoView({behavior:"smooth",block:"end"}); }
+function answerHtml(f){
+  return '<div class="q">'+esc(f.q)+'</div><p>'+esc(fill(f.a)).replace(/\n/g,"<br>")+'</p>'
+    +(f.r?'':'<span class="draft">مسودة — تحتاج مراجعة د. كريم</span>')
+    +'<div class="muted" style="font-size:13px;margin-top:4px">معلومة عامة — لو حالتك مختلفة اسأل الدكتور.</div>';
+}
+function emergencyHtml(){
+  return '<b>⚠️ اللي بتوصفه ممكن يكون علامة خطر.</b><p>ما تستناش — اتصل بالعيادة دلوقتي، ولو العيادة مقفولة روح أقرب طوارئ فورًا.</p>'
+    +'<div class="row"><a class="btn btn-warn btn-sm" href="'+telHref(CLINIC.phone)+'">📞 اتصال بالعيادة</a></div>';
+}
+let _lastQ="";
+function notFoundHtml(q,sugs){
+  _lastQ=q;
+  return '<b>السؤال ده محتاج د. كريم نفسه 🙏</b><p>ما لقيتش إجابة جاهزة لسؤالك. ضيفه لأسئلتك للدكتور (هيطلع في التقرير وتسأله في الكشف)، أو اتصل بالعيادة.</p>'
+    +'<div class="row"><button class="btn-sm" onclick="addQuestion(this)">📝 ضيفه لأسئلتي للدكتور</button><a class="btn btn-sm btn2" href="'+telHref(CLINIC.phone)+'">📞 اتصال</a></div>'
+    +(sugs&&sugs.length? '<p class="muted" style="margin-top:8px">أو يمكن تقصد:</p>'+sugs.map(x=>'<button class="chip" onclick="showFaq(\''+x.f.id+'\')">'+esc(x.f.q)+'</button>').join("") : "");
+}
+function addQuestion(btn){
+  const q=_lastQ.trim(); if(!q) return;
+  S.questions=((S.questions||"").trim()? S.questions.trim()+"\n" : "")+"• "+q; save();
+  btn.disabled=true; btn.textContent="✓ اتضاف";
+  toast("اتضاف ✓ — هتلاقيه في «العيادة» ← تقرير للدكتور");
+}
+function showFaq(id){ const f=FAQS.find(x=>x.id===id); if(!f) return; meSay(f.q); botSay(answerHtml(f)); }
+function initChat(){
+  if(chatInit) return; chatInit=true;
+  botSay('أهلاً بيك 👋 أنا مساعد '+esc(CLINIC.doctor)+'. اكتب سؤالك وهدوّرلك على إجابته في الأسئلة الشائعة اللي في العيادة.<div class="muted" style="font-size:13px;margin-top:4px">الإجابات عامة ومش بديل عن الكشف. في أي حالة طارئة اتصل بالعيادة على طول.</div>');
+  $("askSug").innerHTML='<div class="muted" style="font-size:14px">أسئلة كتير بتتسأل:</div>'+["st1","pr1","ut1","st4","jj1","cl1"].map(id=>{const f=FAQS.find(x=>x.id===id);return f?'<button class="chip" onclick="showFaq(\''+id+'\')">'+esc(f.q)+'</button>':"";}).join("");
+}
+$("askIn").addEventListener("keydown",e=>{ if(e.key==="Enter"&&!e.shiftKey){ e.preventDefault(); ask(); } });
+async function ask(){
+  const q=$("askIn").value.trim(); if(!q||asking) return;
+  $("askIn").value=""; meSay(q);
+  // 1) علامات الخطر محليًا قبل أي حاجة
+  if(isDanger(q)){ botSay(emergencyHtml(),"em"); return; }
+  // 2) بحث محلي بالكلمات المفتاحية
+  const R=search(q), top=R[0], second=R[1];
+  const clear = top && (!second || top.sc>=second.sc*1.3);   // لازم يكون فيه فايز واضح، مش تعادل
+  const strong = clear && (top.sc>=5 || (top.sc>=2.5 && top.cov>=0.5));
+  if(strong){ botSay(answerHtml(top.f)); return; }
+  // 3) لو الخدمة موجودة: Gemini يختار رقم السؤال بس
+  if(serviceOn()){
+    asking=true;
+    $("chatLog").insertAdjacentHTML("beforeend",'<div class="msg" id="typing">'+avatar()+'<div class="bub"><span class="dots"><span></span><span></span><span></span></span></div></div>'); scrollChat();
+    let res=null;
+    try{
+      const r=await postJSON(CLINIC.reader+"/api/faq-match",{"x-app-token":CLINIC.token},{question:q, options:FAQS.map(f=>({id:f.id,q:f.q}))},15000);
+      if(r.ok) res=r.data;
+    }catch(e){}
+    asking=false; const ty=$("typing"); if(ty) ty.remove();
+    if(res){
+      if(res.emergency){ botSay(emergencyHtml(),"em"); return; }
+      const f=res.id && FAQS.find(x=>x.id===res.id);
+      if(f){ botSay(answerHtml(f)); return; }
+      botSay(notFoundHtml(q,R.slice(0,3))); return;
+    }
+  }
+  // 4) من غير خدمة (أو الخدمة وقعت): أقرب نتيجة محلية لو معقولة
+  if(clear && top.sc>=2 && top.cov>=0.5){ botSay(answerHtml(top.f)); return; }
+  botSay(notFoundHtml(q,R.filter(x=>x.sc>=1).slice(0,3)));
+}
+// صفحة تصفّح الأسئلة
+$("faqSearch").oninput=renderFaqList;
+function qaHtml(f){ return '<details class="qa"><summary>'+esc(f.q)+'</summary><p>'+esc(fill(f.a)).replace(/\n/g,"<br>")+'</p>'+(f.r?'':'<span class="draft">مسودة — تحتاج مراجعة د. كريم</span>')+'</details>'; }
+function renderFaqList(){
+  const q=$("faqSearch").value.trim();
+  if(q){
+    const n=norm(q);
+    const R=search(q).map(x=>x.f);
+    FAQS.forEach(f=>{ if(!R.includes(f) && (norm(f.q).includes(n)||norm(f.a).includes(n))) R.push(f); });
+    $("faqList").innerHTML = R.length? R.slice(0,25).map(qaHtml).join("") : '<p class="muted">مفيش نتايج. جرب كلمة تانية أو <a href="#" onclick="askMode(\'chat\');return false">اسأل البوت</a>.</p>';
+    return;
+  }
+  $("faqList").innerHTML = CATS.map(c=>{ const L=FAQS.filter(f=>f.c===c.id); return L.length? '<details class="cat"><summary>'+esc(c.icon)+' '+esc(c.name)+' <span class="muted">('+L.length+')</span></summary>'+L.map(qaHtml).join("")+'</details>' : ""; }).join("");
+}
+
+/* ---------- العرض ---------- */
+function closeM(id){ $(id).classList.remove("on"); }
+// زرار الرجوع في الأندرويد: يقفل النافذة المفتوحة، وبعدين يرجع للرئيسية، وبعدين يقفل التطبيق
+window.onNativeBack = function(){
+  const m=document.querySelector(".modal.on"); if(m){ m.classList.remove("on"); return true; }
+  const t=document.querySelector(".tab.on"); if(t && t.id!=="t-home"){ go("home"); return true; }
+  if(editing && S.profile){ editing=false; render(); return true; }
+  return false;
+};
+document.querySelectorAll(".modal").forEach(m=>m.onclick=e=>{ if(e.target===m) m.classList.remove("on"); });
+
+function render(){
+  const P=S.profile;
+  // الرئيسية
+  const showSetup = !P || editing;
+  $("setupCard").style.display = showSetup?"block":"none";
+  $("homeMain").style.display = showSetup?"none":"block";
+  if(!P && !$("pCond").value) $("pCond").value="general";
+  if(P){
+    $("hello").textContent="أهلاً "+(P.name||"")+" 👋";
+    $("condBig").textContent=condName(P.cond)||"المتابعة";
+    let op="";
+    if(P.op){ const n=Math.round((today0()-parseD(P.op))/DAY); op= n>0? "عدّى "+n+" يوم على العملية" : n===0? "العملية النهارده — ربنا يتمم بخير" : "العملية بعد "+(-n)+" يوم"; }
+    $("opText").textContent=op; $("opText").style.display=op?"":"none";
+    const tips=TIPS[P.cond]||TIPS.general||[];
+    $("tipsList").innerHTML=tips.map(t=>"<li>"+esc(t)+"</li>").join("");
+  }
+  $("homeStent").innerHTML=stentHtml();
+  $("homeAlert").innerHTML=vitalAlertHtml();
+  // جرعات النهارده
+  const t=ymd(new Date()), tk=S.taken[t]||{};
+  const doses=[]; S.meds.filter(m=>!m.until||m.until>=t).forEach(m=>m.times.forEach(tm=>doses.push({m,tm,k:m.id+"_"+tm})));
+  doses.sort((a,b)=>a.tm.localeCompare(b.tm));
+  $("todayDoses").innerHTML = doses.length? doses.map(d=>'<div class="dose'+(tk[d.k]?" done":"")+'"><div class="t"><b>'+esc(d.m.name)+'</b><div class="muted">'+fmtT(d.tm)+(d.m.note?" • "+noteHtml(d.m.note):"")+'</div></div><button class="tick" onclick="toggleDose(\''+d.k+'\')">✓</button></div>').join("")
+    : '<p class="muted">مفيش أدوية متسجلة. <a href="#" onclick="go(\'meds\');openMed();return false">ضيف أدويتك</a></p>';
+  // الموعد الجاي
+  const up=S.appts.filter(a=>a.date>=t);
+  $("nextAppt").innerHTML = up.length? '<b>'+esc(up[0].title)+'</b><div class="muted">'+fmtD(parseD(up[0].date))+' • '+fmtT(up[0].time)+'</div>'
+    : '<p class="muted" style="margin:0">مفيش مواعيد. <a href="#" onclick="go(\'appts\');openAppt();return false">سجّل موعدك الجاي</a></p>';
+  // قائمة الأدوية
+  $("medList").innerHTML = S.meds.length? S.meds.map(m=>'<div class="item'+(m.until&&m.until<t?" past":"")+'"><div class="row between"><b>'+esc(m.name)+(m.until?' <span class="tag">'+(m.until<t?"خلص":"لحد "+parseD(m.until).toLocaleDateString("ar-EG",{day:"numeric",month:"short"}))+'</span>':'')+'</b><span><button class="btn2 btn-sm" onclick="openMed(\''+m.id+'\')">تعديل</button> <button class="btn2 btn-sm" onclick="delMed(\''+m.id+'\')">مسح</button></span></div>'+(m.note?'<div class="muted">'+noteHtml(m.note)+'</div>':'')+m.times.map(tm=>'<div class="row between" style="margin-top:4px"><span>⏰ '+fmtT(tm)+'</span><a class="btn btn-sm btn2" target="_blank" href="'+gcalDaily(m.name,m.note,tm)+'">أضف للتقويم</a></div>').join("")+'</div>').join("")
+    : '<p class="muted">لسه مفيش أدوية.</p>';
+  // المواعيد
+  $("apptList").innerHTML = S.appts.length? S.appts.map(a=>'<div class="item'+(a.date<t?" past":"")+'"><div class="row between"><b>'+esc(a.title)+'</b><button class="btn2 btn-sm" onclick="delAppt(\''+a.id+'\')">مسح</button></div><div class="muted">'+fmtD(parseD(a.date))+' • '+fmtT(a.time)+(a.note?" • "+esc(a.note):"")+'</div>'+(a.date>=t?'<a class="btn btn-sm btn2" target="_blank" style="margin-top:4px" href="'+gcalOnce(a.title,a.date,a.time,a.note)+'">أضف للتقويم</a>':'')+'</div>').join("")
+    : '<p class="muted">مفيش مواعيد متسجلة.</p>';
+  // بياناتي
+  const dl=s=>parseD(s).toLocaleDateString("ar-EG");
+  $("myData").innerHTML = P? "الاسم: "+esc(P.name||"—")+(P.age?"<br>السن: "+P.age:"")+"<br>سبب المتابعة: "+esc(condName(P.cond)||"—")+(P.op?"<br>تاريخ العملية: "+dl(P.op):"")+(P.stent?"<br>ميعاد شيل الدعامة: "+dl(P.stent):"")+"<br>هدف المية: "+waterGoal()+" كوباية" : "لسه ما سجلتش بياناتك.";
+  renderWater(); renderVoid(); renderVitals();
+  if(document.activeElement!==$("drQs")) $("drQs").value=S.questions||"";
+}
+
+/* =========================================================
+   📄 المحتوى من ملفات جوجل (فولدر «محتوى تطبيق د. كريم»)
+   التطبيق بيقرا الملفات كل ما يفتح، وبيحفظ آخر نسخة سليمة على الموبايل.
+   لو مفيش نت أو فيه ملف فيه غلط: بيكمّل بآخر نسخة محفوظة، وإلا بالمحتوى اللي جوه التطبيق.
+   (فاضي = لسه مفيش ملفات — التطبيق شغال بالمحتوى اللي جواه)
+   ========================================================= */
+const SHEETS = {
+  // clinic: "",
+  // faq:    "",
+  // tips:   "",
+  // lists:  ""
+};
+const CKEY = "drkarim_content_v1";
+const sheetUrl = id => "https://docs.google.com/spreadsheets/d/" + id + "/export?format=csv";
+function parseCSV(t){
+  const rows=[]; let row=[], f="", q=false;
+  t=String(t).replace(/^\uFEFF/,"");
+  for(let i=0;i<t.length;i++){
+    const c=t[i];
+    if(q){ if(c==='"'){ if(t[i+1]==='"'){ f+='"'; i++; } else q=false; } else f+=c; }
+    else if(c==='"') q=true;
+    else if(c===","){ row.push(f); f=""; }
+    else if(c==="\n"||c==="\r"){ if(c==="\r"&&t[i+1]==="\n") i++; row.push(f); rows.push(row); row=[]; f=""; }
+    else f+=c;
+  }
+  if(f!==""||row.length){ row.push(f); rows.push(row); }
+  return rows.map(r=>r.map(x=>x.trim())).filter(r=>r.some(Boolean));
+}
+const cut=(s,n)=>String(s||"").slice(0,n);
+const digits=s=>String(s||"").replace(/[^\d]/g,"");
+const CAT_ICONS={"الحصوات":"🪨","البروستاتا":"🧔","الالتهابات والحرقان":"🔥","المثانة والتبول":"🚻","الدعامة والقسطرة":"🩹","العمليات والمناظير":"🏥","صحة الرجل والخصوبة":"♂️","الأطفال":"🧒","التحاليل والأشعة":"🧪","العيادة والحجز":"📞"};
+function phoneOf(s){ let ph=digits(s); if(ph.startsWith("20")&&ph.length===12) ph="0"+ph.slice(2); return ph.length>=7&&ph.length<=15? ph : null; }
+// كل جزء بيتراجع لوحده — لو فيه مشكلة بيرجع null والجزء ده بيفضل زي ما هو
+const PARSE = {
+  clinic(rows){
+    const v={}; rows.slice(1).forEach(r=>{ if(r[0]) v[r[0].toLowerCase()]=r[2]||""; });
+    const o={};
+    if(v.doctor) o.doctor=cut(v.doctor,80);
+    if(v.title) o.title=cut(v.title,160);
+    if(v.address!==undefined) o.address=cut(v.address,300);
+    if(v.hours!==undefined) o.hours=cut(v.hours,600);
+    if(v.booking!==undefined) o.booking=cut(v.booking,400);
+    if(v.fee!==undefined) o.fee=cut(digits(v.fee),6);
+    const p1=phoneOf(v.phone); if(p1) o.phone=p1;
+    if(v.phone2!==undefined) o.phone2=phoneOf(v.phone2)||"";
+    if(v.map!==undefined) o.map=/^https:\/\//.test(v.map)?cut(v.map,400):"";
+    return Object.keys(o).length? o : null;
+  },
+  faq(rows){
+    const cats=[], seen={}, out=[], ids=new Set();
+    rows.slice(1).forEach((r,i)=>{
+      const q=cut(r[2],300), a=cut(r[4],2500); if(!q||!a) return;
+      let id=cut((r[0]||"").replace(/[^\w-]/g,""),40)||("row"+(i+2)); while(ids.has(id)) id+="_"; ids.add(id);
+      const cn=cut(r[1]||"أسئلة تانية",60);
+      if(!seen[cn]){ seen[cn]="c"+cats.length; cats.push({id:seen[cn],name:cn,icon:CAT_ICONS[cn]||"📌"}); }
+      out.push({id,c:seen[cn],q,k:cut(r[3],400),a,r:/^(أيوه|ايوه|أيوة|ايوة|نعم|yes|y|1|✓)$/i.test(r[5]||"")?1:0});
+    });
+    return out.length? {faq:out,cats} : null;
+  },
+  // النصايح: العمود الأول = سبب المتابعة (زي ما مكتوب في التطبيق)، التاني = النصيحة
+  tips(rows){
+    const g={};
+    rows.slice(1).forEach(r=>{ const name=(r[0]||"").trim(), t=cut(r[1],300); const c=CONDS.find(([id,n])=>id===name||n===name); if(c&&t) (g[c[0]]=g[c[0]]||[]).push(t); });
+    return Object.keys(g).length? g : null;
+  },
+  lists(rows){
+    const col=i=>rows.slice(1).map(r=>cut(r[i],200)).filter(Boolean);
+    const o={danger:col(0),postop:col(1),quick:col(2),types:col(3)};
+    return Object.values(o).some(a=>a.length)? o : null;
+  }
+};
+function applyContent(c){
+  if(!c) return;
+  try{
+    if(c.clinic) Object.assign(CLINIC, c.clinic);
+    if(c.faq){ FAQS=c.faq.faq; CATS=c.faq.cats; buildIndex(); }
+    if(c.tips) Object.assign(TIPS, c.tips);
+    if(c.lists){
+      if(c.lists.danger.length) DANGER_SIGNS=c.lists.danger;
+      if(c.lists.postop.length) POSTOP=c.lists.postop;
+      if(c.lists.quick.length) QUICK=c.lists.quick;
+      if(c.lists.types.length) APPT_TYPES=c.lists.types;
+    }
+  }catch(e){ console.error(e); }
+}
+async function getText(url){
+  if(NATIVE){ const r=await native("get",{url,timeout:15000}); return r&&r.status===200? r.body : null; }
+  const ctl=new AbortController(), tm=setTimeout(()=>ctl.abort(),15000);
+  try{ const r=await fetch(url,{signal:ctl.signal}); return r.ok? await r.text() : null; } catch(e){ return null; } finally{ clearTimeout(tm); }
+}
+async function refreshContent(){
+  const ids=Object.entries(SHEETS).filter(([,id])=>id); if(!ids.length) return;
+  let saved={}; try{ saved=JSON.parse(localStorage.getItem(CKEY))||{}; }catch(e){}
+  const fresh={}; let changed=false;
+  await Promise.all(ids.map(async([k,id])=>{
+    try{
+      const t=await getText(sheetUrl(id)); if(!t || /^\s*</.test(t)) return;  // صفحة دخول جوجل = الملف مش متشارك
+      const v=PARSE[k](parseCSV(t)); if(v){ fresh[k]=v; if(JSON.stringify(v)!==JSON.stringify(saved[k])) changed=true; }
+    }catch(e){}
+  }));
+  if(!Object.keys(fresh).length) return;
+  const merged=Object.assign({}, saved, fresh);
+  try{ localStorage.setItem(CKEY, JSON.stringify(merged)); }catch(e){}
+  if(changed){ applyContent(fresh); applyClinicUI(); render(); if($("askBrowse").style.display!=="none") renderFaqList(); }
+}
+try{ applyContent(JSON.parse(localStorage.getItem(CKEY))); }catch(e){}
+applyClinicUI();
+render();
+refreshContent();
+syncReminders(); refreshNotifState();
+</script>
+</body>
+</html>
