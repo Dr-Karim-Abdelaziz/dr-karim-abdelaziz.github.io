@@ -42,7 +42,7 @@ jobs:
 
       - name: Check the web app (JavaScript syntax)
         env:
-          APP_TOKEN: ${{ secrets.APP_TOKEN }}
+          APP_TOKEN: ${{ secrets.APP_TOKEN || secrets.APPTOKEN }}
         run: |
           python3 tool/bundle_web.py
           python3 - <<'EOF'
