@@ -1,4 +1,4 @@
-const CACHE = "drkarim-v1";
+const CACHE = "drkarim-v2";
 const FILES = ["./", "./index.html", "./faq.js", "./manifest.json", "./icon-192.png", "./icon-512.png", "./logo.png", "./logo-full.png", "./symbol.png", "./apple-touch-icon.png"];
 
 self.addEventListener("install", e => {
