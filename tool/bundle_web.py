@@ -34,7 +34,7 @@ html = html.replace('<script src="faq.js"></script>', "<script>\n" + faq.replace
 
 # الصور اللي الصفحة بتستخدمها (الرمز في الهيدر والبوت، واللوجو كامل في التقرير)
 count = 0
-for name, need in (("logo-full.png", 1), ("symbol.png", 2)):
+for name, need in (("logo-full.png", 1), ("symbol.png", 2), ("logo.png", 1)):
     n = html.count(name)
     if n < need:
         fail(name + " references not found")

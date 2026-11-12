@@ -26,13 +26,19 @@ import 'reminders.dart';
 /// ما تغيّروش بعد النشر، وإلا البيانات القديمة مش هتبان.
 const kBase = 'https://app.drkarim.invalid/';
 const kPlum = Color(0xFF1F3A93); // الكحلي الأساسي
-const kBg = Color(0xFFF5F7FA); // خلفية التطبيق (رمادي فاتح محايد)
+// نفس تدرّج الهيدر في التطبيق (أزرق سماوي ← بمبي)
+const kGrad = LinearGradient(
+  begin: Alignment.topLeft,
+  end: Alignment.bottomRight,
+  colors: [Color(0xFF16307E), Color(0xFF2747A8), Color(0xFF5B7FD0)],
+  stops: [0, .45, 1],
+);
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
-    statusBarIconBrightness: Brightness.dark,
+    statusBarIconBrightness: Brightness.light,
     systemNavigationBarColor: Colors.white,
     systemNavigationBarIconBrightness: Brightness.dark,
   ));
@@ -68,7 +74,7 @@ class _AppScreenState extends State<AppScreen> {
     super.initState();
     _web = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setBackgroundColor(kBg)
+      ..setBackgroundColor(const Color(0xFFF4F7FB))
       ..addJavaScriptChannel('DrMagdy', onMessageReceived: (m) => _onMessage(m.message))
       ..setNavigationDelegate(NavigationDelegate(
         onNavigationRequest: (req) {
@@ -235,15 +241,15 @@ class _AppScreenState extends State<AppScreen> {
       child: Scaffold(
         backgroundColor: Colors.white,
         body: Column(children: [
-          // ورا شريط الساعة: أبيض زي هيدر التطبيق
-          Container(height: pad.top, color: Colors.white),
+          // ورا شريط الساعة: نفس تدرّج الهيدر
+          Container(height: pad.top, decoration: const BoxDecoration(gradient: kGrad)),
           Expanded(
             child: Stack(children: [
               WebViewWidget(controller: _web),
               if (_loading)
-                const ColoredBox(
-                  color: kBg,
-                  child: Center(child: CircularProgressIndicator(color: kPlum, strokeWidth: 3)),
+                const DecoratedBox(
+                  decoration: BoxDecoration(gradient: kGrad),
+                  child: Center(child: CircularProgressIndicator(color: Colors.white)),
                 ),
             ]),
           ),
