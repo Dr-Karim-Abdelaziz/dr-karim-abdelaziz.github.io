@@ -31,6 +31,7 @@ jobs:
         run: |
           mkdir -p _site/app
           cp pages/index.html _site/index.html
+          if [ -d pages/doctor ]; then cp -r pages/doctor _site/doctor; fi
           cp web/index.html web/faq.js web/sw.js web/manifest.json web/logo.png web/logo-full.png web/symbol.png web/icon-192.png web/icon-512.png web/apple-touch-icon.png _site/app/
           node --check _site/app/faq.js
           touch _site/.nojekyll
